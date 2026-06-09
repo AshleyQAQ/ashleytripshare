@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的环球旅游攻略大本营</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f4f6f9; }
+        header { background: #1d3557; color: white; padding: 50px 20px; text-align: center; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .welcome-text { font-size: 1.2em; color: #666; margin-bottom: 40px; }
+        
+        /* 卡片整齐排列的布局 */
+        .country-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+        
+        /* 提升卡片的高级感：加深阴影和圆角 */
+        .country-card { background: white; border-radius: 12px; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; text-decoration: none; color: #333; transition: transform 0.3s, box-shadow 0.3s; }
+        .country-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+        
+        /* 💡 真正的图片封面样式：自动裁剪缩放，不会变形 */
+        .country-img-box { height: 180px; width: 100%; overflow: hidden; background: #ddd; }
+        .country-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .country-card:hover .country-img-box img { transform: scale(1.05); } /* 鼠标悬浮时图片轻微放大动画 */
+        
+        .country-info { padding: 20px; text-align: left; }
+        .country-info h3 { margin: 0 0 10px 0; font-size: 1.3em; color: #1d3557; }
+        .country-info p { margin: 0; color: #777; font-size: 0.9em; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌍 我的环球旅游指南大本营 🌍</h1>
+    <p>心向远方，脚踏实地。记录我去过的每一个角落。</p>
+</header>
+
+<div class="container">
+    <p class="welcome-text">请选择你想要查看的旅游目的地国家：</p>
+    
+    <div class="country-grid">
+        
+        <!-- 日本攻略卡片 -->
+        <a href="./japan/index.html" class="country-card">
+            <div class="country-img-box">
+                <img src="jp-cover.jpg" alt="日本风景封面">
+            </div>
+            <div class="country-info">
+                <h3>日本攻略 🌸</h3>
+                <p>含签证办理、东京住宿、保姆级交通指南、预算自动计算器及常用随身口语...</p>
+            </div>
+        </a>
+
+        <!-- 美国攻略卡片：结合加州生活全新升级！ -->
+        <a href="./usa/index.html" class="country-card">
+            <div class="country-img-box">
+                <img src="us-cover.jpg" alt="美国风景封面">
+            </div>
+            <div class="country-info">
+                <h3>美国攻略 · 加州阳光篇 🗽</h3>
+                <p>记录圣迭戈（San Diego）学术交流期间的留学生活、UCSD校园漫步、西海岸自驾公路旅行与超详细美签避坑实录...</p>
+            </div>
+        </a>
+
+        <!-- 韩国攻略卡片：全面更新 -->
+        <a href="./korea/index.html" class="country-card">
+            <div class="country-img-box">
+                <img src="kr-cover.jpg" alt="韩国风景封面">
+            </div>
+            <div class="country-info">
+                <h3>韩国攻略 🇰🇷</h3>
+                <p>含首尔明洞与弘大美食地图、釜山海云台绝美海景圣地巡礼、免税店独家血拼省钱指南及本地人带路的潮流小店...</p>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

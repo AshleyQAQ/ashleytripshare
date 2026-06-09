@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的日本旅游攻略一站式指南</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
+        header { background: #e63946; color: white; padding: 20px; text-align: center; }
+        
+        /* 导航栏保持居中排列 */
+        nav { display: flex; justify-content: center; background: #1d3557; }
+        nav a { color: white; padding: 14px 20px; text-decoration: none; text-align: center; cursor: pointer; }
+        nav a:hover { background: #457b9d; }
+        
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* 控制板块显示隐藏 */
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        h2 { border-bottom: 2px solid #e63946; padding-bottom: 10px; color: #1d3557; }
+        .calc-box, .lang-card { background: #f1faee; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 5px solid #e63946; }
+        .calc-input { margin: 10px 0; }
+        .calc-input label { display: inline-block; width: 100px; }
+        .calc-input input { padding: 5px; width: 150px; }
+        button { background: #e63946; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #c1121f; }
+        .jp-btn { background: #457b9d; margin-left: 10px; padding: 3px 10px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌸 我的日本旅游攻略 🌸</h1>
+    <p>一站式霓虹国保姆级旅行指南</p>
+</header>
+
+<nav>
+    <!-- 🌟 重新听指挥：返回总首页放到了最前面，样式保持统一居中 -->
+    <a href="../index.html">返回总首页 ↩</a>
+    <a onclick="showSection('home')">日本首页</a>
+    <a onclick="showSection('visa')">签证</a>
+    <a onclick="showSection('hotel')">住宿</a>
+    <a onclick="showSection('traffic')">交通</a>
+    <a onclick="showSection('calculator')">预算计算器</a>
+    <a onclick="showSection('japanese')">常用日语</a>
+</nav>
+
+<div class="container">
+    
+    <!-- 【1. 首页板块】 -->
+    <div id="home" class="section active">
+        <h2>欢迎来到我的日本旅行世界</h2>
+        <p>这里记录了我精心整理的日本旅游攻略。点击上方的导航栏，可以查看签证流程、住宿推荐、交通路线，还可以使用我制作的预算计算器和日语随身宝哦！</p>
+        <img src="view.jpg" alt="日本风景" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+    </div>
+
+    <!-- 【2. 签证板块】 -->
+    <div id="visa" class="section">
+        <h2>居留与签证办理</h2>
+        <p>目前单次赴日旅游签证通常需要通过旅行社代办，准备以下核心材料：</p>
+        <ul>
+            <li>护照原件（有效期6个月以上）</li>
+            <li>签证申请表（贴照片）</li>
+            <li>身份证及户口本复印件</li>
+            <li>经济能力证明（如银行流水、在职证明等）</li>
+        </ul>
+    </div>
+
+    <!-- 【3. 住宿板块】 -->
+    <div id="hotel" class="section">
+        <h2>住宿推荐选区</h2>
+        <p>以东京为例，第一次去推荐住在以下交通枢纽附近：</p>
+        <ul>
+            <li><strong>新宿 (Shinjuku)</strong>：交通极其便利，周边购物、夜生活丰富。</li>
+            <li><strong>上野/浅草 (Ueno/Asakusa)</strong>：直达京成电铁（成田机场极速往返），性价比高。</li>
+            <li><strong>银座 (Ginza)</strong>：预算充足首选，高端酒店云集。</li>
+        </ul>
+    </div>
+
+    <!-- 【4. 交通板块】 -->
+    <div id="traffic" class="section">
+        <h2>交通保姆级指南</h2>
+        <p>日本交通虽然看似复杂，但记住这两个利器就够了：</p>
+        <ol>
+            <li><strong>手机西瓜卡 (Suica)</strong>：直接在 iPhone 钱包里添加，坐地铁、便利店消费直接刷手机。</li>
+            <li><strong>导航 App</strong>：直接用 Google Maps，会精确显示在哪个站台、车费多少钱。</li>
+        </ol>
+    </div>
+
+    <!-- 【5. 预算计算器】 -->
+    <div id="calculator" class="section">
+        <h2>💰 旅游预算计算器</h2>
+        <div class="calc-box">
+            <div class="calc-input">
+                <label>机票/往返：</label>
+                <input type="number" id="flight" value="0"> 元
+            </div>
+            <div class="calc-input">
+                <label>酒店/每晚：</label>
+                <input type="number" id="hotelPrice" value="0"> 元 × 
+                <input type="number" id="days" value="1" style="width:50px;"> 晚
+            </div>
+            <div class="calc-input">
+                <label>每日餐饮/玩乐：</label>
+                <input type="number" id="food" value="300"> 元/天
+            </div>
+            <button onclick="calculateBudget()">一键计算总预算</button>
+            <h3 style="margin-top: 15px; color: #e63946;">预估总花费：<span id="totalResult">0</span> 元</h3>
+        </div>
+    </div>
+
+    <!-- 【6. 常用日语】 -->
+    <div id="japanese" class="section">
+        <h2>🗣️ 常用日语随身宝</h2>
+        <p>点击右侧的“播放”按钮，可以直接用日语读出来哦（需要电脑有声音且联网）：</p>
+        <div class="lang-card">
+            <strong>1. 问候：</strong> こんにちは (Konnichiwa) - 你好 
+            <button class="jp-btn" onclick="speak('こんにちは')">🔊 播放</button>
+        </div>
+        <div class="lang-card">
+            <strong>2. 谢谢：</strong> ありがとう ございます (Arigatou gozaimasu) - 非常感谢 
+            <button class="jp-btn" onclick="speak('ありがとうございます')">🔊 播放</button>
+        </div>
+        <div class="lang-card">
+            <strong>3. 结账：</strong> お会計、お願いします (Okaikei, onegai shimasu) - 请买单 
+            <button class="jp-btn" onclick="speak('お会計、お願いします')">🔊 播放</button>
+        </div>
+        <div class="lang-card">
+            <strong>4. 推荐：</strong> おすすめは何ですか？ (Osusume wa nan desu ka?) - 有什么推荐的吗？ 
+            <button class="jp-btn" onclick="speak('おすすめは何ですか？')">🔊 播放</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(sec => {
+            sec.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    function calculateBudget() {
+        const flight = parseFloat(document.getElementById('flight').value) || 0;
+        const hotelPrice = parseFloat(document.getElementById('hotelPrice').value) || 0;
+        const days = parseInt(document.getElementById('days').value) || 0;
+        const food = parseFloat(document.getElementById('food').value) || 0;
+
+        const total = flight + (hotelPrice * days) + (food * days);
+        document.getElementById('totalResult').innerText = total.toFixed(0);
+    }
+
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ja-JP';
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("抱歉，您的浏览器不支持语音播放功能。");
+        }
+    }
+</script>
+
+</body>
+</html>
