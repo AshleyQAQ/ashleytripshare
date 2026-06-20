@@ -517,18 +517,21 @@
         <div class="lang-card"><strong>免税：</strong> 免税（めんぜい）はできますか？ (Menzei wa dekimasu ka?) - 可以免税吗？ <button class="jp-btn" onclick="speak('免税はできますか')">🔊 播放</button></div>
         <div class="lang-card"><strong>刷卡：</strong> クレジットカードは使えますか？ (Kurejitto kādo wa tsukaemasu ka?) - 可以刷信用卡吗？ <button class="jp-btn" onclick="speak('クレジットカードは使えますか')">🔊 播放</button></div>
 
-        <h3>2. 🌐 智能联网翻译官（中译日）</h3>
+     <h3>2. 🌐 智能联网双向翻译官（中⇄日）</h3>
         <div class="translator-box">
-            <p style="font-size: 0.9em; color:#666;">在下方输入任何你想表达的中文字句，点击翻译即可一键联网秒翻并支持语音朗读！</p>
+            <!-- 核心升级：双向翻译方向控制按钮 -->
+            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()">当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)</button>
+            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句：</p>
+            
             <div class="trans-input">
                 <textarea id="inputText" placeholder="例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。"></textarea>
             </div>
             <button onclick="translateText()">一键联网翻译</button>
             
             <div id="resultBox" class="trans-result">
-                <strong>翻译结果（日语）：</strong>
+                <strong id="resultTitle">翻译结果：</strong>
                 <p id="translatedText" style="font-size: 1.2em; color: #1d3557; font-weight: bold; margin: 5px 0;"></p>
-                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读翻译结果</button>
+                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读结果</button>
             </div>
         </div>
     </div>
