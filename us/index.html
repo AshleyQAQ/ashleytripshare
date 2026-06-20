@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的美国旅游与交流一站式指南</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
+        /* 切换为美式代表性红蓝配色：这里采用经典美式深红 */
+        header { background: #b22234; color: white; padding: 20px; text-align: center; }
+        
+        /* 导航栏保持居中排列 */
+        nav { display: flex; justify-content: center; background: #3c3b6e; }
+        nav a { color: white; padding: 14px 20px; text-decoration: none; text-align: center; cursor: pointer; }
+        nav a:hover { background: #55548a; }
+        
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* 控制板块显示隐藏 */
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        h2 { border-bottom: 2px solid #b22234; padding-bottom: 10px; color: #3c3b6e; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f0f2f5; }
+        .calc-box, .lang-card, .translator-box { background: #f0f2f5; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 5px solid #b22234; }
+        .calc-input { margin: 10px 0; }
+        .calc-input label { display: inline-block; width: 100px; }
+        .calc-input input { padding: 5px; width: 150px; }
+        button { background: #b22234; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #8b1a27; }
+        .us-btn { background: #3c3b6e; margin-left: 10px; padding: 3px 10px; font-size: 0.9em; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        .us-btn:hover { background: #28274a; }
+        
+        /* 翻译官样式微调 */
+        .switch-btn { background: #3c3b6e; margin-bottom: 10px; }
+        textarea { width: 100%; height: 80px; padding: 10px; box-sizing: border-box; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .trans-result { display: none; margin-top: 15px; padding: 10px; background: #fff; border: 1px dashed #3c3b6e; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🦅 我的美国探索攻略 🦅</h1>
+    <p>一站式北美名校交流与自由行保姆级指南</p>
+</header>
+
+<nav>
+    <a href="../index.html">返回总首页 ↩</a>
+    <a onclick="showSection('home')">美国首页</a>
+    <a onclick="showSection('visa')">签证与出入境</a>
+    <a onclick="showSection('hotel')">高性价比住宿</a>
+    <a onclick="showSection('traffic')">交通通勤</a>
+    <a onclick="showSection('calculator')">预算计算器</a>
+    <a onclick="showSection('english')">地道美语口语</a>
+    <a onclick="showSection('community')">✨ 分享区</a>
+</nav>
+
+<div class="container">
+    
+    <!-- 【1. 首页板块】 -->
+    <div id="home" class="section active">
+        <h2>欢迎来到我的美国探索世界</h2>
+        <p>这里记录了我精心整理的美国旅游与学术交流攻略。无论是漫步西海岸的阳光沙滩，还是在世界顶尖学府的学术沉淀，点击上方导航栏，即可一键解锁签证流程、住宿推荐、通勤指南，还可以使用预算计算器和双向实时翻译官哦！</p>
+        <img src="US_Landscape.JPG" alt="美国风景" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+    </div>
+
+    <!-- 【2. 签证与出入境板块】 -->
+    <div id="visa" class="section">
+        <h2>居留、签证与海关申报</h2>
+        <p>
+            中国大陆居民前往美国，根据具体目的通常需要办理不同类型的非移民签证。最常见的是用于观光旅游、探亲及短期商务的 B1/B2 签证，以及用于国际学术交流、留学身份的 F1 或 J1 签证。自 2016 年起，持 10 年有效 B1/B2 签证的中国公民在赴美前必须在 EVUS（电子签证更新系统）进行登记。
+        </p>
+
+        <h3>1. 常见赴美签证类型概览</h3>
+        <table>
+            <tr>
+                <th>签证类型</th>
+                <th>主要适用人群</th>
+                <th>常见有效期</th>
+                <th>面签核心关注点</th>
+            </tr>
+            <tr>
+                <td>B1/B2 旅游商务签</td>
+                <td>短期观光、自由行、探亲、参加短期会议</td>
+                <td>最长 10 年</td>
+                <td>无移民倾向、国内强约束力、资金充足</td>
+            </tr>
+            <tr>
+                <td>F1 学生签证</td>
+                <td>全日制海外留学生（本科/硕士/博士）</td>
+                <td>最长 5 年</td>
+                <td>学术背景真实性、I-20表格、专业敏感度</td>
+            </tr>
+            <tr>
+                <td>J1 交流访问学者签</td>
+                <td>国际交换生、访问学者、短期课题联合培养</td>
+                <td>根据 DS-2019 确定</td>
+                <td>研修计划（Research Plan）、导师简历、按期回国</td>
+            </tr>
+        </table>
+
+        <h3>2. 核心办理流程</h3>
+        <ol>
+            <li><strong>确立身份表格</strong>：留学/交流生需拿到校方寄出的 I-20（F1）或 DS-2019 表格（J1），并缴纳 SEVIS FEE。旅游直接填写 DS-160。</li>
+            <li><strong>填写 DS-160 表格</strong>：这是美签最重要的基础材料，务必字字斟酌，信息真实完整。</li>
+            <li><strong>缴纳签证费并预约面签</strong>：在官方指定预约网站创建账户，缴费后预约各地美领馆的面签时间。</li>
+            <li><strong>准备面签材料支持包</strong>：护照、照片、DS160确认页、预约单；学术类还需准备资金证明、英文简历、导师简介、详细研究计划（Research Plan，涉及高频集成电路等敏感专业尤为重要）。</li>
+            <li><strong>前往领馆面签</strong>：保持自信，诚实回答签证官（VO）的问题。若遇到 Check（行政审理），积极配合补充材料，通常周期为 3-6 周。</li>
+        </ol>
+
+        <h3>3. 出入境与 EVUS 登记须知</h3>
+        <ul>
+            <li><strong>B1/B2 专属 EVUS 登记</strong>：出发前至少 72 小时必须在 EVUS 官网完成信息登记，否则无法登机，登记有效期通常为 2 年。</li>
+            <li><strong>海关入境问答</strong>：下飞机进入海关（CBP）时，如实回答入美目的、停留时间、入住地址，并严禁携带任何新鲜肉类、违禁药品或未申报的超额现金。</li>
+        </ul>
+    </div>
+
+    <!-- 【3. 高性价比住宿板块】 -->
+    <div id="hotel" class="section">
+        <h2>美国核心城市与校园周边住宿推荐</h2>
+        <p>面向首次前往美国自由行、或初到海外名校进行学术交流的学生及背包客。美国的住宿成本通常较高，我们主要锁定在“治安良好地区（Safe Neighborhood）”以及“临近公共交通/轻轨站”这两个硬性指标，确保性价比与人身安全双赢。</p>
+        
+        <hr>
+
+        <h3>🇺🇸 西海岸篇（加州/圣迭戈周边）住宿选区</h3>
+        <p>如果是前往西海岸（如 San Diego），强烈建议住在<strong>拉霍亚（La Jolla）</strong>校园周边，或者轻轨蓝线（Trolley Blue Line）沿线车站，通勤安全且价格相对市中心更良心。</p>
+        
+        <h4>【极致省钱：优质青年旅舍/国际学生公寓】（预算：$40 - $70 / 晚）</h4>
+        <ul>
+            <li>
+                <strong>拉霍亚/海滩区：HI San Diego Point Loma (国际青年旅舍)</strong>
+                <ul>
+                    <li><strong>特色：</strong>环境极具加州西海岸风情，带有公共大厨房、户外庭院和烧烤区，经常举办免费的桌游和社交活动，可以结识全世界的年轻学者。</li>
+                    <li><strong>周边/交通：</strong>方便前往各高校西校区，出门有公交直达海滩，周边治安极其良好。</li>
+                    <li><strong>参考价格：</strong>约 $45 - $65 / 床位</li>
+                </ul>
+            </li>
+            <li>
+                <strong>市中心轻轨沿线：ITH CoDev Mission Valley (共享社区)</strong>
+                <ul>
+                    <li><strong>特色：</strong>专为年轻远程工作者和学生设计的 Co-living 空间，配备了极佳的无线上网环境和安静的自习/工作区，非常适合刚落地倒时差、或准备中转的特种兵。</li>
+                    <li><strong>周边/交通：</strong>步行可达轻轨绿线车站，去往市中心或大学城均在半小时生活圈内。</li>
+                    <li><strong>参考价格：</strong>约 $40 - $60 / 床位</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>【独立房间：高性价比美式连锁酒店】（预算：$90 - $150 / 晚）</h4>
+        <ul>
+            <li>
+                <strong>全美覆盖：Motel 6 / Super 8 连锁汽车旅馆</strong>
+                <ul>
+                    <li><strong>特色：</strong>美国平价老字号。房间宽敞、标配免费车位。虽然设施偏向传统极简美式，但用来作为中转落脚点，能帮你省下大笔开销。</li>
+                    <li><strong>预订技巧：</strong>建议选择远离繁华街区、临近高速路口或大学城边缘的分店，治安更好。</li>
+                    <li><strong>参考价格：</strong>约 $85 - $120 / 房间</li>
+                </ul>
+            </li>
+            <li>
+                <strong>安全品质推荐：Best Western (最佳西方) / Days Inn</strong>
+                <ul>
+                    <li><strong>特色：</strong>性价比极高的中端快捷连锁。最大的卖点是**绝大多数分店都免费赠送地道的全套美式早餐**（华夫饼、炒蛋、咖啡），大堂24小时提供热水和咖啡，对中国胃非常友好。</li>
+                    <li><strong>推荐选区：</strong>Best Western Plus 校园周边店、靠近轻轨蓝线沿线分店。</li>
+                    <li><strong>参考价格：</strong>约 $110 - $160 / 房间</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 【4. 交通通勤板块】 -->
+    <div id="traffic" class="section">
+        <h2>交通通勤保姆级指南（轻轨、校车与跨城市公共运输）</h2>
+        <p>在美国，虽然是“车轮上的国家”，但在各大大学城及核心市区，善用公共交通依然可以做到完美闭眼通勤。以下是为你整理的落地通勤指南：</p>
+
+        <hr>
+
+        <h3>一、 机场至市区/校园的通勤首选</h3>
+        <ul>
+            <li><strong>机场大巴与接驳车（Shuttle）</strong>：多数美国机场（如圣迭戈 SAN、洛杉矶 LAX）都提供免费的航站楼接驳车直达市区的轻轨站（Trolley / Metro Station）或者大巴总站。</li>
+            <li><strong>网约车（Uber / Lyft）</strong>：落地后直接在手机下载 Uber 或 Lyft。机场有专门的 "Ride Share" 标识上客区，切勿在非指定区域拦车。</li>
+        </ul>
+
+        <h3>二、 市区/大学城内通勤与数字支付</h3>
+        <ul>
+            <li>
+                <strong>手机数字交通卡（强烈推荐）</strong>：
+                <ul>
+                    <li><strong>iPhone 用户</strong>：打开手机“钱包 (Wallet)” -> 点击右上角“+” -> “交通卡” -> 搜索 <strong>Pronto (圣迭戈/南加州常用)</strong> 或 <strong>Clipper (北加州/旧金山)</strong>、<strong>TAP (洛杉矶)</strong>。可直接关联银联/Visa充值。</li>
+                    <li><strong>使用方法</strong>：在上轻轨（Trolley）或者登上 MCTS 公交车时，**无需解锁手机，直接在站台读卡器上“哔”一下**即可。美国轻轨通常是开放式站台，上下车务必记得刷卡，会有工作人员上车抽查。</li>
+                </ul>
+            </li>
+            <li><strong>名校专属免费福利</strong>：如果你是持有效学生卡/交流凭证的在校生，通常可以去学校交通中心激活免费的公交季度卡（U-Pass），在读期间可以免费无限次搭乘该地区的轻轨和公交！</li>
+            <li><strong>导航辅助</strong>：强烈推荐 <strong>Google Maps</strong> 搭配 <strong>Transit App</strong>。Transit 可以精确追踪每一班公交车到站的实时 GPS 位置，防止在美国街头苦等。</li>
+        </ul>
+
+        <h3>三、 跨城市远途大交通</h3>
+        <ul>
+            <li><strong>美铁 Amtrak</strong>：相当于美国的城际火车。例如走西海岸著名的 **Pacific Surfliner（太平洋冲浪者号）**，一路紧贴太平洋海岸线行驶，风景无敌，是往返洛杉矶与圣迭戈最舒适的选择。可在官网购买观景车厢票，大件行李有专属放置区。</li>
+            <li><strong>城际巴士（FlixBus / Greyhound）</strong>：如果追求极致省钱，FlixBus 和灰狗巴士是穿梭北美城市最廉价的手段，提前订票经常能买到十几刀的跨城特价票。</li>
+        </ul>
+    </div>
+
+    <!-- 【5. 预算计算器】 -->
+    <div id="calculator" class="section">
+        <h2>💰 美元旅行与生活预算计算器</h2>
+        <div class="calc-box">
+            <div class="calc-input">
+                <label>机票/往返总计：</label>
+                <input type="number" id="flight" value="0"> 元 (RMB)
+            </div>
+            <div class="calc-input">
+                <label>酒店住宿/每晚：</label>
+                <input type="number" id="hotelPrice" value="0"> 刀 (USD) × 
+                <input type="number" id="hotelDays" value="1" style="width:60px;"> 晚
+            </div>
+            <div class="calc-input">
+                <label>每日餐饮/玩乐：</label>
+                <input type="number" id="food" value="50"> 刀 (USD) × 
+                <input type="number" id="playDays" value="1" style="width:60px;"> 天
+            </div>
+            <!-- 新增汇率换算选项，默认按照2026年美金对人民币的大致汇率汇算 -->
+            <div class="calc-input">
+                <label>参考美金汇率：</label>
+                <input type="number" id="exchangeRate" value="7.2" style="width:80px;" step="0.1"> (1美金 = ? 人民币)
+            </div>
+            <button onclick="calculateBudget()">一键计算总预算 (RMB)</button>
+            <h3 style="margin-top: 15px; color: #b22234;">预估折合总花费：<span id="totalResult">0</span> 元人民币</h3>
+        </div>
+    </div>
+
+    <!-- 【6. 地道美语口语】 -->
+    <div id="english" class="section">
+        <h2>🗣️ 地道美语随身宝与智能翻译官</h2>
+        <p>不仅包含了北美校园与日常生存常用语，在下方【智能联网翻译】中还能实时进行双向中英互译！</p>
+        
+        <h3>1. 精选北美旅游与学术生存常用语</h3>
+        <div class="lang-card"><strong>问候与寒暄：</strong> How's it going? - 最近怎么样？/ 你好 <button class="us-btn" onclick="speak(\`How's it going?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>结账/小费：</strong> Can I get the check, please? - 麻烦帮我拿一下账单。 <button class="us-btn" onclick="speak(\`Can I get the check, please?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>打包外卖：</strong> To go, please. / Can I get a to-go box? - 麻烦打包外卖。/ 可以给我个打包盒吗？ <button class="us-btn" onclick="speak(\`Can I get a to-go box?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>公交问路：</strong> Does this bus go to the campus? - 请问这辆公交车去学校校区吗？ <button class="us-btn" onclick="speak(\`Does this bus go to the campus?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>学术求助：</strong> Could you please explain this algorithm again? - 老师/师兄能帮我再解释一下这个算法吗？ <button class="us-btn" onclick="speak(\`Could you please explain this algorithm again?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>寻求澄清：</strong> Sorry, I didn't catch that. Could you repeat it? - 抱歉我没听清，您能重复一遍吗？ <button class="us-btn" onclick="speak(\`Sorry, I didn't catch that. Could you repeat it?\`)">🔊 播放</button></div>
+        <div class="lang-card"><strong>求救/突发：</strong> Excuse me, I need some help here. - 打扰一下，我这里需要协助。 <button class="us-btn" onclick="speak(\`Excuse me, I need some help here.\`)">🔊 播放</button></div>
+
+        <h3>2. 🌐 智能联网双向翻译官（中⇄英）</h3>
+        <div class="translator-box">
+            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()">当前模式：🇨🇳 中文 ➜ 🇺🇸 英语 (点击切换)</button>
+            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句：</p>
+            
+            <div class="trans-input">
+                <textarea id="inputText" placeholder="例如：请问去工程学院大楼怎么走？ / 这张交通卡怎么充值？"></textarea>
+            </div>
+            <button onclick="translateText()">一键联网翻译</button>
+            
+            <div id="resultBox" class="trans-result">
+                <strong id="resultTitle">翻译结果：</strong>
+                <p id="translatedText" style="font-size: 1.2em; color: #3c3b6e; font-weight: bold; margin: 5px 0;"></p>
+                <button class="us-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读结果</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 【7. 分享区板块】 -->
+    <div id="community" class="section">
+        <h2>🌍 北美情报共享看板</h2>
+        <p style="color: #666; font-size: 0.95em;">欢迎来到属于大家的北美情报站！你可以在下方自由发帖、分享你最新的选课心得、好用的电路仿真Tricks、以及小众的加州落日机位。</p>
+        <!-- 保持与日本篇相同的 Giscus 系统架构，方便你后续绑定对应的 repo 讨论区 -->
+        <script src="https://giscus.app/client.js"
+            data-repo="AshleyQAQ/ashleytripshare"
+            data-repo-id="R_kgDOS1ZmWA"
+            data-category="General"
+            data-category-id="DIC_kwDOS1ZmWM4C_c1E"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
+
+</div>
+
+<script>
+    // 1. 切换 Tab 逻辑
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(sec => {
+            sec.classList.remove('active');
+        });
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+    }
+
+    // 2. 考虑汇率的预算计算器逻辑升级
+    function calculateBudget() {
+        const flight = parseFloat(document.getElementById('flight').value) || 0;
+        const hotelPrice = parseFloat(document.getElementById('hotelPrice').value) || 0;
+        const hotelDays = parseInt(document.getElementById('hotelDays').value) || 0;
+        const food = parseFloat(document.getElementById('food').value) || 0;
+        const playDays = parseInt(document.getElementById('playDays').value) || 0;
+        const rate = parseFloat(document.getElementById('exchangeRate').value) || 7.2;
+
+        // 将美金部分的住宿和餐饮乘以汇率，再加上人民币结算的机票
+        const totalUSD = (hotelPrice * hotelDays) + (food * playDays);
+        const totalRMB = flight + (totalUSD * rate);
+        
+        document.getElementById('totalResult').innerText = totalRMB.toFixed(0);
+    }
+
+    // 3. 语音引擎：自适应语言环境切换
+    let currentMode = "zh-to-en"; // 默认中文转英文
+
+    function speak(text, lang = 'en-US') {
+        if ('speechSynthesis' in window) {
+            // 停止当前所有播放防止重叠
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("抱歉，您的浏览器不支持语音播放功能。");
+        }
+    }
+
+    // 4. 双向翻译模式切换
+    function toggleTranslationMode() {
+        const modeBtn = document.getElementById('modeBtn');
+        const inputTip = document.getElementById('inputTip');
+        const inputText = document.getElementById('inputText');
+        
+        if (currentMode === "zh-to-en") {
+            currentMode = "en-to-zh";
+            modeBtn.innerText = "当前模式：🇺🇸 英语 ➜ 🇨🇳 中文 (点击切换)";
+            inputTip.innerText = "Please input English sentences below:";
+            inputText.placeholder = "e.g. Where is the Department of Electrical and Computer Engineering?";
+        } else {
+            currentMode = "zh-to-en";
+            modeBtn.innerText = "当前模式：🇨🇳 中文 ➜ 🇺🇸 英语 (点击切换)";
+            inputTip.innerText = "请在下方输入中文字句：";
+            inputText.placeholder = "例如：请问去工程学院大楼怎么走？ / 这张交通卡怎么充值？";
+        }
+    }
+
+    // 5. 核心联网翻译引擎：接入免费开放 Google 翻译 API
+    async function translateText() {
+        const text = document.getElementById('inputText').value.trim();
+        const resultBox = document.getElementById('resultBox');
+        const translatedTextDiv = document.getElementById('translatedText');
+        const playBtn = document.getElementById('playTransBtn');
+        
+        if (!text) {
+            alert(currentMode === "zh-to-en" ? "请先输入需要翻译的字句！" : "Please enter some text to translate!");
+            return;
+        }
+
+        translatedTextDiv.innerText = currentMode === "zh-to-en" ? "联网翻译中，请稍候..." : "Translating, please wait...";
+        resultBox.style.display = "block";
+
+        // 根据当前模式动态匹配源语言和目标语言
+        const sl = currentMode === "zh-to-en" ? "zh-CN" : "en";
+        const tl = currentMode === "zh-to-en" ? "en" : "zh-CN";
+        const speakLang = tl === "en" ? "en-US" : "zh-CN";
+
+        try {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data && data[0] && data[0][0]) {
+                const result = data[0][0][0];
+                translatedTextDiv.innerText = result;
+                // 动态绑定对应语言的语音发音包
+                playBtn.onclick = function() { speak(result, speakLang); };
+            } else {
+                translatedTextDiv.innerText = "翻译失败，请检查网络或稍后重试。";
+            }
+        } catch (error) {
+            console.error(error);
+            translatedTextDiv.innerText = "网络请求发生错误，请重试。";
+        }
+    }
+</script>
+
+</body>
+</html>
