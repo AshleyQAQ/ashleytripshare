@@ -502,10 +502,10 @@
         </div>
     </div>
 
-    <!-- 【6. 常用日语】 -->
+<!-- 【6. 常用日语】 -->
     <div id="japanese" class="section">
-        <h2>🗣️ 常用日语随身宝与智能翻译官</h2>
-        <p>不仅包含了超全面的常用语，遇到突发状况还能在下方【智能联网翻译】中实时查词！</p>
+        <h2>🗣️ 常用日语随身宝与智能双向语音翻译官</h2>
+        <p>不仅包含了超全面的常用语，遇到突发状况还能在下方使用【智能联网双向翻译】，支持打字或麦克风语音输入！</p>
         
         <h3>1. 精选旅游生存常用语</h3>
         <div class="lang-card"><strong>问候：</strong> こんにちは (Konnichiwa) - 你好 <button class="jp-btn" onclick="speak('こんにちは')">🔊 播放</button></div>
@@ -517,21 +517,22 @@
         <div class="lang-card"><strong>免税：</strong> 免税（めんぜい）はできますか？ (Menzei wa dekimasu ka?) - 可以免税吗？ <button class="jp-btn" onclick="speak('免税はできますか')">🔊 播放</button></div>
         <div class="lang-card"><strong>刷卡：</strong> クレジットカードは使えますか？ (Kurejitto kādo wa tsukaemasu ka?) - 可以刷信用卡吗？ <button class="jp-btn" onclick="speak('クレジットカードは使えますか')">🔊 播放</button></div>
 
-     <h3>2. 🌐 智能联网双向翻译官（中⇄日）</h3>
+        <h3>2. 🌐 智能联网双向翻译官（中⇄日 + 🎤 语音输入）</h3>
         <div class="translator-box">
-            <!-- 核心升级：双向翻译方向控制按钮 -->
-            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()">当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)</button>
-            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句：</p>
+            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()" style="background: #1d3557; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-bottom: 10px;">当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)</button>
+            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句或点击麦克风说话：</p>
             
-            <div class="trans-input">
-                <textarea id="inputText" placeholder="例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。"></textarea>
+            <div class="trans-input" style="margin: 10px 0;">
+                <textarea id="inputText" placeholder="例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。" style="padding: 8px; width: 100%; max-width: 500px; height: 60px; border: 1px solid #ccc; border-radius: 4px; resize: vertical; display: block; margin-bottom: 5px;"></textarea>
+                <!-- 语音输入听写按钮 -->
+                <button id="voiceBtn" onclick="startVoiceInput()" style="background: #457b9d; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 0.9em;">🎤 点击开始说话</button>
             </div>
-            <button onclick="translateText()">一键联网翻译</button>
+            <button onclick="translateText()" style="margin-top: 5px;">一键联网翻译</button>
             
-            <div id="resultBox" class="trans-result">
-                <strong id="resultTitle">翻译结果：</strong>
+            <div id="resultBox" class="trans-result" style="margin-top: 15px; padding: 10px; background: #fff; border: 1px dashed #457b9d; border-radius: 4px; display: none;">
+                <strong id="resultTitle">翻译结果（日语）：</strong>
                 <p id="translatedText" style="font-size: 1.2em; color: #1d3557; font-weight: bold; margin: 5px 0;"></p>
-                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读结果</button>
+                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读翻译结果</button>
             </div>
         </div>
     </div>
@@ -560,6 +561,11 @@
 </div>
 
 <script>
+    // 全局变量控制翻译语种方向
+    let sourceLang = "zh-CN";
+    let targetLang = "ja";
+    let recognition = null;
+
     function showSection(sectionId) {
         const sections = document.querySelectorAll('.section');
         sections.forEach(sec => {
@@ -578,30 +584,106 @@
         const food = parseFloat(document.getElementById('food').value) || 0;
         const playDays = parseInt(document.getElementById('playDays').value) || 0;
 
-        // 核心升级：住宿费和游玩/餐饮费均拥有独立的天数系数进行计算
         const total = flight + (hotelPrice * hotelDays) + (food * playDays);
         document.getElementById('totalResult').innerText = total.toFixed(0);
     }
 
-    function speak(text) {
+    function speak(text, lang = 'ja-JP') {
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ja-JP';
+            utterance.lang = lang;
             window.speechSynthesis.speak(utterance);
         } else {
             alert("抱歉，您的浏览器不支持语音播放功能。");
         }
     }
 
-    // 核心联网翻译引擎：接入微软官方免 Token 开放 API
+    // 动态切换中日/日中翻译模式
+    function toggleTranslationMode() {
+        const modeBtn = document.getElementById('modeBtn');
+        const inputTip = document.getElementById('inputTip');
+        const inputText = document.getElementById('inputText');
+        const resultBox = document.getElementById('resultBox');
+
+        resultBox.style.display = "none"; 
+
+        if (sourceLang === "zh-CN") {
+            sourceLang = "ja";
+            targetLang = "zh-CN";
+            modeBtn.innerText = "当前模式：🇯🇵 日语 ➜ 🇨🇳 中文 (点击切换)";
+            inputTip.innerText = "请在下方输入日语字句或点击麦克风说话：";
+            inputText.placeholder = "例如：トイレはどこですか？ / お会計をお願いします。";
+        } else {
+            sourceLang = "zh-CN";
+            targetLang = "ja";
+            modeBtn.innerText = "当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)";
+            inputTip.innerText = "请在下方输入中文字句或点击麦克风说话：";
+            inputText.placeholder = "例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。";
+        }
+    }
+
+    // 智能外部语音输入听写函数
+    function startVoiceInput() {
+        const voiceBtn = document.getElementById('voiceBtn');
+        const inputText = document.getElementById('inputText');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("抱歉，您的浏览器不支持语音输入功能，建议使用 Chrome 或 Safari 浏览器，并确保在 HTTPS 环境下打开。");
+            return;
+        }
+
+        if (!recognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = function(event) {
+                const resultText = event.results[0][0].transcript;
+                inputText.value = resultText;
+                voiceBtn.innerText = "🎤 点击开始说话";
+                voiceBtn.style.background = "#457b9d";
+                // 语音输入完成后，自动唤醒联网翻译
+                translateText();
+            };
+
+            recognition.onerror = function(event) {
+                console.error("语音识别错误: ", event.error);
+                if (event.error === 'not-allowed') {
+                    alert("请在浏览器地址栏左侧允许网页访问您的麦克风权限！");
+                }
+                voiceBtn.innerText = "🎤 点击开始说话";
+                voiceBtn.style.background = "#457b9d";
+            };
+
+            recognition.onend = function() {
+                voiceBtn.innerText = "🎤 点击开始说话";
+                voiceBtn.style.background = "#457b9d";
+            };
+        }
+
+        // 识别语种根据翻译方向智能动态自适应
+        recognition.lang = (sourceLang === "zh-CN") ? 'zh-CN' : 'ja-JP';
+
+        try {
+            recognition.start();
+            voiceBtn.innerText = "🛑 正在聆听中...请说话";
+            voiceBtn.style.background = "#e63946"; 
+        } catch (e) {
+            recognition.stop();
+        }
+    }
+
+    // 核心双向联网翻译引擎
     async function translateText() {
         const text = document.getElementById('inputText').value.trim();
         const resultBox = document.getElementById('resultBox');
         const translatedTextDiv = document.getElementById('translatedText');
+        const resultTitle = document.getElementById('resultTitle');
         const playBtn = document.getElementById('playTransBtn');
         
         if (!text) {
-            alert("请先输入需要翻译的中文！");
+            alert(sourceLang === "zh-CN" ? "请先输入或通过语音输入中文！" : "请先输入或通过语音输入日语！");
             return;
         }
 
@@ -609,15 +691,21 @@
         resultBox.style.display = "block";
 
         try {
-            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=ja&dt=t&q=${encodeURIComponent(text)}`;
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
             const response = await fetch(url);
             const data = await response.json();
             
             if (data && data[0] && data[0][0]) {
                 const result = data[0][0][0];
                 translatedTextDiv.innerText = result;
-                // 动态绑定语音包功能
-                playBtn.onclick = function() { speak(result); };
+                
+                if (targetLang === "ja") {
+                    resultTitle.innerText = "翻译结果（日语）：";
+                    playBtn.onclick = function() { speak(result, 'ja-JP'); };
+                } else {
+                    resultTitle.innerText = "翻译结果（中文）：";
+                    playBtn.onclick = function() { speak(result, 'zh-CN'); };
+                }
             } else {
                 translatedTextDiv.innerText = "翻译失败，请检查网络或稍后重试。";
             }
