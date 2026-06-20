@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的韩国旅游攻略一站式指南</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
+        /* 切换为韩系经典代表配色：大气的太极深红与标志性深蓝 */
+        header { background: #cd2e3a; color: white; padding: 20px; text-align: center; }
+        
+        /* 导航栏保持居中排列 */
+        nav { display: flex; justify-content: center; background: #0047a0; }
+        nav a { color: white; padding: 14px 20px; text-decoration: none; text-align: center; cursor: pointer; }
+        nav a:hover { background: #256bbd; }
+        
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* 控制板块显示隐藏 */
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        h2 { border-bottom: 2px solid #cd2e3a; padding-bottom: 10px; color: #0047a0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f1f5fa; }
+        .calc-box, .lang-card, .translator-box { background: #f1f5fa; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 5px solid #cd2e3a; }
+        .calc-input { margin: 10px 0; }
+        .calc-input label { display: inline-block; width: 100px; }
+        .calc-input input { padding: 5px; width: 150px; }
+        button { background: #cd2e3a; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #a51d24; }
+        .kr-btn { background: #0047a0; margin-left: 10px; padding: 3px 10px; font-size: 0.9em; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        .kr-btn:hover { background: #003375; }
+        
+        /* 翻译官样式 */
+        .switch-btn { background: #0047a0; margin-bottom: 10px; }
+        textarea { width: 100%; height: 80px; padding: 10px; box-sizing: border-box; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .trans-result { display: none; margin-top: 15px; padding: 10px; background: #fff; border: 1px dashed #0047a0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🇰🇷 我的韩国、釜山与济州岛攻略 🇰🇷</h1>
+    <p>一站式浪漫海景与潮流血拼保姆级旅行指南</p>
+</header>
+
+<nav>
+    <a href="../index.html">返回总首页 ↩</a>
+    <a onclick="showSection('home')">韩国首页</a>
+    <a onclick="showSection('visa')">签证与K-ETA</a>
+    <a onclick="showSection('hotel')">高性价比住宿</a>
+    <a onclick="showSection('traffic')">海岛与城市交通</a>
+    <a onclick="showSection('calculator')">预算计算器</a>
+    <a onclick="showSection('korean')">韩综潮流常用语</a>
+    <a onclick="showSection('community')">✨ 分享区</a>
+</nav>
+
+<div class="container">
+    
+    <!-- 【1. 首页板块】 -->
+    <div id="home" class="section active">
+        <h2>欢迎来到我的韩国旅行世界</h2>
+        <p>这里记录了我精心整理的韩国、釜山以及济州岛自由行攻略。无论是首尔明洞的时尚血拼，釜山海云台的绝美天空胶囊列车，还是济州岛果冻海的浪漫治愈，点击上方的导航栏，即可查看全套签证、性价比住宿、海岛通勤路线。页面内还集成了专属的韩币预算计算器和中韩智能双向翻译官哦！</p>
+        <img src="../kr-cover.jpg" alt="韩国风景" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+    </div>
+
+    <!-- 【2. 签证与K-ETA板块】 -->
+    <div id="visa" class="section">
+        <h2>居留与签证办理须知</h2>
+        <p>
+            中国大陆居民前往韩国旅游，通常需要提前在韩国驻华各领事馆或指定代办机构办理个人旅游签证（C-3-9）。值得注意的是，**济州岛针对中国公民实施免签政策**，如果你只去济州岛且直飞往返，无需办理任何签证。但若包含首尔、釜山等转机或跨城行程，则必须持有有效的韩国签证。
+        </p>
+
+        <h3>1. 韩国旅游签证及免签政策概览</h3>
+        <table>
+            <tr>
+                <th>目的地/签证类型</th>
+                <th>有效期/停留期</th>
+                <th>入境条件</th>
+                <th>核心申请材料精简版</th>
+            </tr>
+            <tr>
+                <td><strong>济州岛（直飞免签）</strong></td>
+                <td>最长停留 30 天</td>
+                <td>必须直航往返、不出济州岛</td>
+                <td>有效护照、往返机票行程单、酒店预订单</td>
+            </tr>
+            <tr>
+                <td>单次旅游签证 (C-3-9)</td>
+                <td>3个月有效 / 停留90天</td>
+                <td>前往韩国全境通用</td>
+                <td>身份证原件、申请表、财产证明（流水或社保）</td>
+            </tr>
+            <tr>
+                <td>五年多次往返签证</td>
+                <td>5年有效 / 每次停留30天</td>
+                <td>符合特定学历或财力门槛</td>
+                <td>本科以上学历（学信网）或特定职业、高纳税证明</td>
+            </tr>
+        </table>
+
+        <h3>2. 大学生简化办理优势</h3>
+        <p>韩国签证对学生群体非常友好。中国**四年制全日制大学在校生及毕业生（通过学信网验证）**，在申请单次或5年多次旅游签证时，通常可以免除提交繁琐的房产、大额存款或个税流水证明，只需提供学信网电子注册备案表和在读/毕业证明即可迅速获签。</p>
+
+        <h3>3. 出入境小贴士</h3>
+        <ul>
+            <li><strong>海关健康申报</strong>：入境韩国前，需按最新要求在纸质单或Q-CODE网站完成健康申报。</li>
+            <li><strong>免签入境济州岛注意</strong>：虽然免签，但海关抽查较为严格，请务必随身打印好**全英文的往返机票确认单和不间断的酒店入住凭证**，以备查验，防止拒绝入境。</li>
+        </ul>
+    </div>
+
+    <!-- 【3. 高性价比住宿板块】 -->
+    <div id="hotel" class="section">
+        <h2>釜山、济州岛及首尔高性价比住宿推荐</h2>
+        <p>为你精选卡死在“治安极佳、下楼即是核心地铁站或热门海滩”硬性条件下的高性价比落脚点。不管是单人床位还是独立房间，都能实现省钱与舒适两不误。</p>
+        
+        <hr>
+
+        <h3>🌊 釜山篇：绝美海景与便利通勤选区</h3>
+        <p>第一次去釜山，首推住在<strong>海云台/广安里</strong>（下楼就是海滩、看广安大桥夜景超绝）或者<strong>西面站/釜山站周边</strong>（交通枢纽、换乘去哪都方便）。</p>
+        <ul>
+            <li>
+                <strong>广安里海景体验：釜山大桥好客青旅 (Hotel 1 / Hostel Area)</strong>
+                <ul>
+                    <li><strong>特色：</strong>拥有直面广安里大海的大落地窗。公共空间宽敞，躺在床上就能看日出与晚上的大桥无人机秀，极具浪漫韩剧氛围。</li>
+                    <li><strong>参考价格：</strong>约 160 - 260 RMB / 床位</li>
+                </ul>
+            </li>
+            <li>
+                <strong>西面站枢纽：相铁FREESA INN 釜山西面 (Sotetsu Fresa Inn)</strong>
+                <ul>
+                    <li><strong>特色：</strong>日系品质连锁进驻韩国。全自助办理，大堂备品齐全。位于釜山最热闹的“西面商圈”，楼下全是网红咖啡厅和帐篷马车小吃摊。</li>
+                    <li><strong>参考价格：</strong>约 350 - 500 RMB / 双人独立房间</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>🌴 济州岛篇：免签度假村与核心商圈选区</h3>
+        <p>济州岛没有地铁，主要靠公交。住宿推荐住在**济州市区（莲洞/老济州）**（离机场近、吃饭免税店极方便）或者**西归浦市区/中文旅游区**（靠近南端核心瀑布和火山地貌景点）。</p>
+        <ul>
+            <li>
+                <strong>老济州核心区：济州贝斯特韦斯特酒店 (Best Western Jeju)</strong>
+                <ul>
+                    <li><strong>特色：</strong>性价比逆天的星级连锁。过马路就是新罗和乐天免税店，下楼有直接去往各大热门海滩和机场的急行公交站，对不赶时间的自由行极为友好。</li>
+                    <li><strong>参考价格：</strong>约 380 - 550 RMB / 独立套房</li>
+                </ul>
+            </li>
+            <li>
+                <strong>咸德海滩周边：济州海边简易青旅公寓</strong>
+                <ul>
+                    <li><strong>特色：</strong>紧邻网红咸德“果冻海”，下楼就是极其细腻的白沙滩和咖啡一条街。清晨开窗就能吹到太平洋的海风。</li>
+                    <li><strong>参考价格：</strong>约 150 - 220 RMB / 床位</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 【4. 海岛与城市交通板块】 -->
+    <div id="traffic" class="section">
+        <h2>交通保姆级指南（T-money、釜山轻轨、济州岛急行巴士）</h2>
+        <p>韩国交通工具十分发达，刷卡、导航、海岛通勤看这一篇就够：</p>
+
+        <hr>
+
+        <h3>一、 市区通用：T-money 交通卡</h3>
+        <ul>
+            <li><strong>一卡走天下</strong>：落地后直接在机场或任何便利店（CU/GS25/7-11）购买一张 **T-money卡**（工本费通常4000韩币），在便利店用现金韩币充值。</li>
+            <li><strong>全国通用与换乘优惠</strong>：全韩国的地铁、公交、甚至济州岛的巴士和出租车都能刷它。在首尔和釜山，**地铁和公交之间换乘享有免费或极高折扣的优惠**（下车记得也要刷一下卡）。</li>
+        </ul>
+
+        <h3>二、 釜山交通：浪漫的天空胶囊列车</h3>
+        <ul>
+            <li><strong>城市地铁</strong>：釜山地铁1号线、2号线交汇，直接看懂中文和数字编码即可轻松搭乘。</li>
+            <li><strong>尾浦-青沙浦天空胶囊 (Sky Capsule)</strong>：前往釜山绝不可错过的网红小火车。彩色复古的4人小车厢悬挂在高空，一路上紧贴釜山海岸线。**必须提前在官方网站预约订票**，现场去基本买不到空位。</li>
+        </ul>
+
+        <h3>三、 济州岛交通：没车也能玩转大巴逻辑</h3>
+        <ul>
+            <li><strong>机场急行巴士（1xx路）</strong>：从机场出发快速贯穿全岛的核心动脉，停靠站少，速度极快（如101路、102路直达东线和西线各大海滩）。</li>
+            <li><strong>干线巴士（2xx路）</strong>：深入各大景点、涉地可支、城山日出峰的主要通勤工具。单次刷卡统一价，非常良心。</li>
+            <li><strong>地图导航警示</strong>：**在韩国千万不要用 Google Maps 导航，数据不准！** 必须下载 **NAVER Map（有中文版）** 或者 **Kakao Map**，能精确告诉你巴士还有几分钟到站、在哪一侧上车。</li>
+        </ul>
+    </div>
+
+    <!-- 【5. 预算计算器】 -->
+    <div id="calculator" class="section">
+        <h2>💰 韩币旅行预算智能计算器</h2>
+        <div class="calc-box">
+            <div class="calc-input">
+                <label>机票/往返总计：</label>
+                <input type="number" id="flight" value="0"> 元 (RMB)
+            </div>
+            <div class="calc-input">
+                <label>酒店住宿/每晚：</label>
+                <input type="number" id="hotelPrice" value="0"> 万韩币 (KRW) × 
+                <input type="number" id="hotelDays" value="1" style="width:60px;"> 晚
+            </div>
+            <div class="calc-input">
+                <label>每日餐饮/血拼：</label>
+                <input type="number" id="food" value="5"> 万韩币 (KRW) × 
+                <input type="number" id="playDays" value="1" style="width:60px;"> 天
+            </div>
+            <div class="calc-input">
+                <label>韩币参考汇率：</label>
+                <input type="number" id="exchangeRate" value="185" style="width:80px;"> (1元人民币 ≈ ? 韩币)
+            </div>
+            <button onclick="calculateBudget()">一键计算总预算 (RMB)</button>
+            <h3 style="margin-top: 15px; color: #cd2e3a;">预估折合总花费：<span id="totalResult">0</span> 元人民币</h3>
+        </div>
+    </div>
+
+    <!-- 【6. 韩综潮流常用语】 -->
+    <div id="korean" class="section">
+        <h2>🗣️ 潮流韩语随身宝与智能翻译官</h2>
+        <p>精选韩国街头、点餐、追星血拼高频短语，配合下方的中韩双向在线翻译官，让你沟通无障碍！</p>
+        
+        <h3>1. 精选旅游生存高频常用语</h3>
+        <div class="lang-card"><strong>你好/打扰一下：</strong> 안녕하세요 (Annyeonghaseyo) - 你好 <button class="kr-btn" onclick="speak('안녕하세요')">🔊 播放</button></div>
+        <div class="lang-card"><strong>非常感谢：</strong> 감사합니다 (Gamsahamnida) - 谢谢您 <button class="kr-btn" onclick="speak('감사합니다')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请给我这个：</strong> 이거 주세요 (Igeo juseyo) - 请给我拿这个（配合手指点餐神句） <button class="kr-btn" onclick="speak('이거 주세요')">🔊 播放</button></div>
+        <div class="lang-card"><strong>多少钱：</strong> 얼마예요? (Eolmayeyo?) - 请问这个多少钱？ <button class="kr-btn" onclick="speak('얼마예요')">🔊 播放</button></div>
+        <div class="lang-card"><strong>有洗手间吗：</strong> 화장실 어디예요? (Hwajangsil eodiyeyo?) - 请问洗手间在哪里？ <button class="kr-btn" onclick="speak('화장실 어디예요')">🔊 播放</button></div>
+        <div class="lang-card"><strong>可以刷卡吗：</strong> 카드 돼요? (Kadeu dwaeyo?) - 可以刷卡结算吗？ <button class="kr-btn" onclick="speak('카드 돼요')">🔊 播放</button></div>
+
+        <h3>2. 🌐 智能联网双向翻译官（中⇄韩）</h3>
+        <div class="translator-box">
+            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()">当前模式：🇨🇳 中文 ➜ 🇰🇷 韩语 (点击切换)</button>
+            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句：</p>
+            
+            <div class="trans-input">
+                <textarea id="inputText" placeholder="例如：请问去海云台天空胶囊列车的站台怎么走？ / 麻烦帮我多拿一床被子。"></textarea>
+            </div>
+            <button onclick="translateText()">一键联网翻译</button>
+            
+            <div id="resultBox" class="trans-result">
+                <strong id="resultTitle">翻译结果：</strong>
+                <p id="translatedText" style="font-size: 1.2em; color: #0047a0; font-weight: bold; margin: 5px 0;"></p>
+                <button class="kr-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读结果</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 【7. 分享区板块】 -->
+    <div id="community" class="section">
+        <h2>🌍 欧巴欧尼情报共享看板</h2>
+        <p style="color: #666; font-size: 0.95em;">欢迎来到韩国情报站！你可以在下方自由发帖、分享你最新的西归浦出海追海豚实录、广安里绝美咖啡厅机位或者弘大盲盒血拼战利品。</p>
+        <script src="https://giscus.app/client.js"
+            data-repo="AshleyQAQ/ashleytripshare"
+            data-repo-id="R_kgDOS1ZmWA"
+            data-category="General"
+            data-category-id="DIC_kwDOS1ZmWM4C_c1E"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
+
+</div>
+
+<script>
+    // 1. 切换 Tab 逻辑
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(sec => {
+            sec.classList.remove('active');
+        });
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+    }
+
+    // 2. 考虑万元韩币单位的预算计算器
+    function calculateBudget() {
+        const flight = parseFloat(document.getElementById('flight').value) || 0;
+        const hotelPriceWan = parseFloat(document.getElementById('hotelPrice').value) || 0;
+        const hotelDays = parseInt(document.getElementById('hotelDays').value) || 0;
+        const foodWan = parseFloat(document.getElementById('food').value) || 0;
+        const playDays = parseInt(document.getElementById('playDays').value) || 0;
+        const rate = parseFloat(document.getElementById('exchangeRate').value) || 185;
+
+        // 注意：输入的酒店和餐饮是以“万韩币”为单位的
+        const totalKRW = (hotelPriceWan * hotelDays * 10000) + (foodWan * playDays * 10000);
+        const totalRMB = flight + (totalKRW / rate);
+        
+        document.getElementById('totalResult').innerText = totalRMB.toFixed(0);
+    }
+
+    // 3. 语音引擎自适应
+    let currentMode = "zh-to-kr"; 
+
+    function speak(text, lang = 'ko-KR') {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("抱歉，您的浏览器不支持语音播放功能。");
+        }
+    }
+
+    // 4. 双向翻译模式切换
+    function toggleTranslationMode() {
+        const modeBtn = document.getElementById('modeBtn');
+        const inputTip = document.getElementById('inputTip');
+        const inputText = document.getElementById('inputText');
+        
+        if (currentMode === "zh-to-kr") {
+            currentMode = "kr-to-zh";
+            modeBtn.innerText = "当前模式：🇰🇷 韩语 ➜ 🇨🇳 中文 (点击切换)";
+            inputTip.innerText = "Please input Korean below:";
+            inputText.placeholder = "e.g. 이거 얼마예요? 면세 돼요?";
+        } else {
+            currentMode = "zh-to-kr";
+            modeBtn.innerText = "当前模式：🇨🇳 中文 ➜ 🇰🇷 韩语 (点击切换)";
+            inputTip.innerText = "请在下方输入中文字句：";
+            inputText.placeholder = "例如：请问去海云台天空胶囊列车的站台怎么走？";
+        }
+    }
+
+    // 5. 联网翻译引擎：接入免费开放 Google 翻译 API
+    async function translateText() {
+        const text = document.getElementById('inputText').value.trim();
+        const resultBox = document.getElementById('resultBox');
+        const translatedTextDiv = document.getElementById('translatedText');
+        const playBtn = document.getElementById('playTransBtn');
+        
+        if (!text) {
+            alert(currentMode === "zh-to-kr" ? "请先输入需要翻译的字句！" : "번역할 텍스트를 입력해주세요!");
+            return;
+        }
+
+        translatedTextDiv.innerText = currentMode === "zh-to-kr" ? "联网翻译中，请稍候..." : "번역 중...";
+        resultBox.style.display = "block";
+
+        const sl = currentMode === "zh-to-kr" ? "zh-CN" : "ko";
+        const tl = currentMode === "zh-to-kr" ? "ko" : "zh-CN";
+        const speakLang = tl === "ko" ? "ko-KR" : "zh-CN";
+
+        try {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data && data[0] && data[0][0]) {
+                const result = data[0][0][0];
+                translatedTextDiv.innerText = result;
+                playBtn.onclick = function() { speak(result, speakLang); };
+            } else {
+                translatedTextDiv.innerText = "翻译失败，请重试。";
+            }
+        } catch (error) {
+            console.error(error);
+            translatedTextDiv.innerText = "网络请求错误，请重试。";
+        }
+    }
+</script>
+
+</body>
+</html>
