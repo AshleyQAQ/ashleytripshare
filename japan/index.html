@@ -479,22 +479,23 @@
         </ul>
     </div>
 
-    <!-- 【5. 预算计算器】 -->
+<!-- 【5. 预算计算器】 -->
     <div id="calculator" class="section">
         <h2>💰 旅游预算计算器</h2>
         <div class="calc-box">
             <div class="calc-input">
-                <label>机票/往返：</label>
+                <label>机票/往返总计：</label>
                 <input type="number" id="flight" value="0"> 元
             </div>
             <div class="calc-input">
-                <label>酒店/每晚：</label>
+                <label>酒店住宿/每晚：</label>
                 <input type="number" id="hotelPrice" value="0"> 元 × 
-                <input type="number" id="days" value="1" style="width:50px;"> 晚
+                <input type="number" id="hotelDays" value="1" style="width:60px;"> 晚
             </div>
             <div class="calc-input">
                 <label>每日餐饮/玩乐：</label>
-                <input type="number" id="food" value="300"> 元/天
+                <input type="number" id="food" value="300"> 元/天 × 
+                <input type="number" id="playDays" value="1" style="width:60px;"> 天
             </div>
             <button onclick="calculateBudget()">一键计算总预算</button>
             <h3 style="margin-top: 15px; color: #e63946;">预估总花费：<span id="totalResult">0</span> 元</h3>
@@ -503,23 +504,32 @@
 
     <!-- 【6. 常用日语】 -->
     <div id="japanese" class="section">
-        <h2>🗣️ 常用日语随身宝</h2>
-        <p>点击右侧的“播放”按钮，可以直接用日语读出来哦（需要设备有声音且联网）：</p>
-        <div class="lang-card">
-            <strong>1. 问候：</strong> こんにちは (Konnichiwa) - 你好 
-            <button class="jp-btn" onclick="speak('こんにちは')">🔊 播放</button>
-        </div>
-        <div class="lang-card">
-            <strong>2. 谢谢：</strong> ありがとう ございます (Arigatou gozaimasu) - 非常感谢 
-            <button class="jp-btn" onclick="speak('ありがとうございます')">🔊 播放</button>
-        </div>
-        <div class="lang-card">
-            <strong>3. 结账：</strong> お会計、お願いします (Okaikei, onegai shimasu) - 请买单 
-            <button class="jp-btn" onclick="speak('お会計、お願いします')">🔊 播放</button>
-        </div>
-        <div class="lang-card">
-            <strong>4. 推荐：</strong> おすすめは何ですか？ (Osusume wa nan desu ka?) - 有什么推荐的吗？ 
-            <button class="jp-btn" onclick="speak('おすすめは何ですか？')">🔊 播放</button>
+        <h2>🗣️ 常用日语随身宝与智能翻译官</h2>
+        <p>不仅包含了超全面的常用语，遇到突发状况还能在下方【智能联网翻译】中实时查词！</p>
+        
+        <h3>1. 精选旅游生存常用语</h3>
+        <div class="lang-card"><strong>问候：</strong> こんにちは (Konnichiwa) - 你好 <button class="jp-btn" onclick="speak('こんにちは')">🔊 播放</button></div>
+        <div class="lang-card"><strong>谢谢：</strong> ありがとう ございます (Arigatou gozaimasu) - 非常感谢 <button class="jp-btn" onclick="speak('ありがとうございます')">🔊 播放</button></div>
+        <div class="lang-card"><strong>点餐/买单：</strong> これをお願いします (Kore o onegai shimasu) - 我要点这个 / 请买单 <button class="jp-btn" onclick="speak('これをお願いします')">🔊 播放</button></div>
+        <div class="lang-card"><strong>结账：</strong> お会計、お願いします (Okaikei, onegai shimasu) - 请结账 <button class="jp-btn" onclick="speak('お会計、お願いします')">🔊 播放</button></div>
+        <div class="lang-card"><strong>问路：</strong> 车站はどこですか？ (Eki wa doko desu ka?) - 请问车站在哪里？ <button class="jp-btn" onclick="speak('駅はどこですか')">🔊 播放</button></div>
+        <div class="lang-card"><strong>求助：</strong> 英语が話せますか？ (Eigo ga hanasemasu ka?) - 请问您会说英语吗？ <button class="jp-btn" onclick="speak('英語が話せますか')">🔊 播放</button></div>
+        <div class="lang-card"><strong>免税：</strong> 免税（めんぜい）はできますか？ (Menzei wa dekimasu ka?) - 可以免税吗？ <button class="jp-btn" onclick="speak('免税はできますか')">🔊 播放</button></div>
+        <div class="lang-card"><strong>刷卡：</strong> クレジットカードは使えますか？ (Kurejitto kādo wa tsukaemasu ka?) - 可以刷信用卡吗？ <button class="jp-btn" onclick="speak('クレジットカードは使えますか')">🔊 播放</button></div>
+
+        <h3>2. 🌐 智能联网翻译官（中译日）</h3>
+        <div class="translator-box">
+            <p style="font-size: 0.9em; color:#666;">在下方输入任何你想表达的中文字句，点击翻译即可一键联网秒翻并支持语音朗读！</p>
+            <div class="trans-input">
+                <textarea id="inputText" placeholder="例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。"></textarea>
+            </div>
+            <button onclick="translateText()">一键联网翻译</button>
+            
+            <div id="resultBox" class="trans-result">
+                <strong>翻译结果（日语）：</strong>
+                <p id="translatedText" style="font-size: 1.2em; color: #1d3557; font-weight: bold; margin: 5px 0;"></p>
+                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读翻译结果</button>
+            </div>
         </div>
     </div>
 
@@ -561,10 +571,12 @@
     function calculateBudget() {
         const flight = parseFloat(document.getElementById('flight').value) || 0;
         const hotelPrice = parseFloat(document.getElementById('hotelPrice').value) || 0;
-        const days = parseInt(document.getElementById('days').value) || 0;
+        const hotelDays = parseInt(document.getElementById('hotelDays').value) || 0;
         const food = parseFloat(document.getElementById('food').value) || 0;
+        const playDays = parseInt(document.getElementById('playDays').value) || 0;
 
-        const total = flight + (hotelPrice * days) + (food * days);
+        // 核心升级：住宿费和游玩/餐饮费均拥有独立的天数系数进行计算
+        const total = flight + (hotelPrice * hotelDays) + (food * playDays);
         document.getElementById('totalResult').innerText = total.toFixed(0);
     }
 
@@ -575,6 +587,40 @@
             window.speechSynthesis.speak(utterance);
         } else {
             alert("抱歉，您的浏览器不支持语音播放功能。");
+        }
+    }
+
+    // 核心联网翻译引擎：接入微软官方免 Token 开放 API
+    async function translateText() {
+        const text = document.getElementById('inputText').value.trim();
+        const resultBox = document.getElementById('resultBox');
+        const translatedTextDiv = document.getElementById('translatedText');
+        const playBtn = document.getElementById('playTransBtn');
+        
+        if (!text) {
+            alert("请先输入需要翻译的中文！");
+            return;
+        }
+
+        translatedTextDiv.innerText = "联网翻译中，请稍候...";
+        resultBox.style.display = "block";
+
+        try {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=ja&dt=t&q=${encodeURIComponent(text)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data && data[0] && data[0][0]) {
+                const result = data[0][0][0];
+                translatedTextDiv.innerText = result;
+                // 动态绑定语音包功能
+                playBtn.onclick = function() { speak(result); };
+            } else {
+                translatedTextDiv.innerText = "翻译失败，请检查网络或稍后重试。";
+            }
+        } catch (error) {
+            console.error(error);
+            translatedTextDiv.innerText = "网络请求发生错误，请重试。";
         }
     }
 </script>
