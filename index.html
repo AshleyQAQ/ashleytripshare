@@ -3,34 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的环球旅游攻略大本营</title>
+    <title>我的环球旅游指南大本营 | Ashley Trip Share</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f4f6f9; }
-        header { background: #1d3557; color: white; padding: 50px 20px; text-align: center; }
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
-        .welcome-text { font-size: 1.2em; color: #666; margin-bottom: 40px; }
-        
-        /* 卡片整齐排列的布局 */
-        .country-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
-        
-        /* 提升卡片的高级感：加深阴影和圆角 */
-        .country-card { background: white; border-radius: 12px; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; text-decoration: none; color: #333; transition: transform 0.3s, box-shadow 0.3s; }
-        .country-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
-        
-        /* 💡 真正的图片封面样式：自动裁剪缩放，不会变形 */
-        .country-img-box { height: 180px; width: 100%; overflow: hidden; background: #ddd; }
-        .country-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .country-card:hover .country-img-box img { transform: scale(1.05); } /* 鼠标悬浮时图片轻微放大动画 */
-        
-        .country-info { padding: 20px; text-align: left; }
-        .country-info h3 { margin: 0 0 10px 0; font-size: 1.3em; color: #1d3557; }
-        .country-info p { margin: 0; color: #777; font-size: 0.9em; line-height: 1.5; }
+        :root {
+            --primary: #1d3557;
+            --primary-hover: #457b9d;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --radius: 16px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { 
+            font-family: 'Noto Sans SC', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-main); 
+            background: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header { 
+            background: linear-gradient(135deg, #1d3557 0%, #0f172a 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.88em;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header h1 {
+            margin: 10px 0 12px 0;
+            font-size: 2.3em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 0;
+            color: #e2e8f0;
+            font-size: 1.05em;
+            font-weight: 300;
+        }
+
+        .container { 
+            max-width: 1050px; 
+            margin: 40px auto 60px auto; 
+            padding: 0 20px; 
+            text-align: center; 
+        }
+
+        .welcome-text { 
+            font-size: 1.15em; 
+            color: var(--text-muted); 
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .country-grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px; 
+            margin-top: 20px; 
+        }
+
+        .country-card { 
+            background: var(--card-bg); 
+            border-radius: var(--radius); 
+            box-shadow: var(--shadow-sm); 
+            overflow: hidden; 
+            text-decoration: none; 
+            color: var(--text-main); 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .country-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: var(--shadow-md);
+            border-color: #e2e8f0;
+        }
+
+        .country-img-box { 
+            height: 200px; 
+            width: 100%; 
+            overflow: hidden; 
+            background: #e2e8f0; 
+            position: relative;
+        }
+
+        .country-img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        .country-card:hover .country-img-box img { 
+            transform: scale(1.08); 
+        }
+
+        .country-tag {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            font-weight: 500;
+        }
+
+        .country-info { 
+            padding: 24px; 
+            text-align: left; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .country-info h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 1.25em; 
+            color: var(--primary); 
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .country-info p { 
+            margin: 0; 
+            color: var(--text-muted); 
+            font-size: 0.92em; 
+            line-height: 1.6; 
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.88em;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🌍 我的环球旅游指南大本营 🌍</h1>
+    <div class="header-badge">✈️ Global Travel Guide Hub</div>
+    <h1>🌍 我的环球旅游指南大本营</h1>
     <p>心向远方，脚踏实地。记录我去过的每一个角落。</p>
 </header>
 
@@ -43,37 +205,48 @@
         <a href="./japan/index.html" class="country-card">
             <div class="country-img-box">
                 <img src="jp-cover.jpg" alt="日本风景封面">
+                <span class="country-tag">日本专区</span>
             </div>
             <div class="country-info">
                 <h3>日本攻略 🌸</h3>
-                <p>含签证办理、东京住宿、保姆级交通指南、预算自动计算器及常用随身口语...</p>
+                <p>含最新签证办理、东京/关西高性价比住宿选区、保姆级交通指南、日元预算自动计算器及智能中日语音翻译官...</p>
+                <div class="card-footer">进入一站式指南 ➔</div>
             </div>
         </a>
 
-        <!-- 美国攻略卡片：结合加州生活全新升级！ -->
+        <!-- 美国攻略卡片 -->
         <a href="./us/index.html" class="country-card">
             <div class="country-img-box">
                 <img src="us-cover.jpg" alt="美国风景封面">
+                <span class="country-tag">北美专区</span>
             </div>
             <div class="country-info">
                 <h3>美国攻略 · 加州阳光篇 🗽</h3>
-                <p>记录圣迭戈（San Diego）学术交流期间的留学生活、UCSD校园漫步、西海岸自驾公路旅行与超详细美签避坑实录...</p>
+                <p>记录圣迭戈（San Diego）学术交流留学生活、UCSD校园漫步、西海岸自驾公路旅行、汇率算费及超详细美签避坑实录...</p>
+                <div class="card-footer">进入一站式指南 ➔</div>
             </div>
         </a>
 
-        <!-- 韩国攻略卡片：全面更新 -->
+        <!-- 韩国攻略卡片 -->
         <a href="./korea/index.html" class="country-card">
             <div class="country-img-box">
                 <img src="kr-cover.jpg" alt="韩国风景封面">
+                <span class="country-tag">韩国专区</span>
             </div>
             <div class="country-info">
                 <h3>韩国攻略 🇰🇷</h3>
-                <p>含首尔明洞与弘大美食地图、釜山海云台绝美海景圣地巡礼、免税店独家血拼省钱指南及本地人带路的潮流小店...</p>
+                <p>含首尔明洞与弘大美食地图、釜山海云台天空胶囊列车、济州岛直飞免签路线、韩币预算计算器及常用双向口语翻译...</p>
+                <div class="card-footer">进入一站式指南 ➔</div>
             </div>
         </a>
 
-    </div>
+        </div>
 </div>
+
+<footer>
+    <p>© 2026 Ashley Trip Share · 环球旅游指南大本营</p>
+</footer>
 
 </body>
 </html>
+

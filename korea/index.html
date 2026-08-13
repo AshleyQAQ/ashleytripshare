@@ -3,58 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的韩国旅游攻略一站式指南</title>
+    <title>🇰🇷 韩国、釜山与济州岛自由行终极攻略 - AshleyTripShare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
-        /* 切换为韩系经典代表配色：大气的太极深红与标志性深蓝 */
-        header { background: #cd2e3a; color: white; padding: 20px; text-align: center; }
-        
-        /* 导航栏保持居中排列 */
-        nav { display: flex; justify-content: center; background: #0047a0; }
-        nav a { color: white; padding: 14px 20px; text-decoration: none; text-align: center; cursor: pointer; }
-        nav a:hover { background: #256bbd; }
-        
-        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* 控制板块显示隐藏 */
-        .section { display: none; }
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --secondary: #0f172a;
+            --secondary-hover: #334155;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header { 
+            background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%); 
+            color: white; 
+            padding: 45px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0 0 10px 0; font-size: 2.3em; font-weight: 700; }
+        header p { margin: 0; opacity: 0.9; font-weight: 300; font-size: 1.1em; }
+
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            background: var(--secondary); 
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a { 
+            color: rgba(255,255,255,0.88); 
+            padding: 13px 16px; 
+            text-decoration: none; 
+            text-align: center; 
+            cursor: pointer; 
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a.active { 
+            color: white; 
+            background: rgba(255,255,255,0.12); 
+            border-bottom-color: var(--primary);
+        }
+
+        .container { 
+            max-width: 1050px; 
+            margin: 30px auto 60px auto; 
+            padding: 0 20px;
+        }
+
+        .section { 
+            display: none; 
+            background: var(--card-bg); 
+            padding: 32px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+            margin-bottom: 30px; 
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
         .section.active { display: block; }
-        
-        h2 { border-bottom: 2px solid #cd2e3a; padding-bottom: 10px; color: #0047a0; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #f1f5fa; }
-        .calc-box, .lang-card, .translator-box { background: #f1f5fa; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 5px solid #cd2e3a; }
-        .calc-input { margin: 10px 0; }
-        .calc-input label { display: inline-block; width: 100px; }
-        .calc-input input { padding: 5px; width: 150px; }
-        button { background: #cd2e3a; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; }
-        button:hover { background: #a51d24; }
-        .kr-btn { background: #0047a0; margin-left: 10px; padding: 3px 10px; font-size: 0.9em; color: white; border: none; border-radius: 3px; cursor: pointer; }
-        .kr-btn:hover { background: #003375; }
-        
-        /* 翻译官样式 */
-        .switch-btn { background: #0047a0; margin-bottom: 10px; }
-        textarea { width: 100%; height: 80px; padding: 10px; box-sizing: border-box; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .trans-result { display: none; margin-top: 15px; padding: 10px; background: #fff; border: 1px dashed #0047a0; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            border-bottom: 3px solid var(--primary); 
+            padding-bottom: 10px; 
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+
+        h3 { color: #1e293b; margin-top: 24px; font-size: 1.25em; border-left: 4px solid var(--primary); padding-left: 10px; }
+        h4 { color: #334155; margin-top: 16px; font-size: 1.05em; }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        th, td { border: 1px solid #e2e8f0; padding: 12px 14px; text-align: left; }
+        th { background: #f1f5f9; color: var(--secondary); font-weight: 600; }
+
+        .calc-box, .lang-card, .translator-box, .warning-box, .shop-card, .hotel-card { 
+            background: #f8fafc; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 16px 0; 
+            border-left: 5px solid var(--primary); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .warning-box { border-left-color: #ef4444; background: #fef2f2; }
+        .shop-card { border-left-color: #10b981; background: #ecfdf5; }
+        .hotel-card { border-left-color: #0284c7; background: #f0f9ff; }
+
+        .calc-input { margin: 12px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .calc-input label { min-width: 130px; font-weight: 500; }
+        .calc-input input { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95em; }
+
+        button { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 10px 18px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: var(--primary-hover); }
+
+        .kr-btn { 
+            background: var(--secondary); 
+            margin-left: 10px; 
+            padding: 6px 14px; 
+            font-size: 0.88em; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: background 0.2s;
+        }
+
+        .kr-btn:hover { background: var(--secondary-hover); }
+
+        textarea { 
+            width: 100%; 
+            height: 90px; 
+            padding: 12px; 
+            box-sizing: border-box; 
+            margin-bottom: 12px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            font-family: inherit;
+            font-size: 0.95em;
+        }
+
+        .trans-result { 
+            display: none; 
+            margin-top: 15px; 
+            padding: 16px; 
+            background: #fff; 
+            border: 1px dashed var(--secondary); 
+            border-radius: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #334155;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-purple { background: #f3e8ff; color: #6b21a8; }
+        .price-badge { font-weight: 700; color: #0284c7; float: right; font-size: 1.1em; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🇰🇷 我的韩国、釜山与济州岛攻略 🇰🇷</h1>
-    <p>一站式浪漫海景与潮流血拼保姆级旅行指南</p>
+    <h1>🇰🇷 韩国、釜山与济州岛自由行终极攻略 🇰🇷</h1>
+    <p>标注具体名店地址与招牌菜、百元级嘉宾馆与天空胶囊列车路线</p>
 </header>
 
-<nav>
+<nav id="mainNav">
     <a href="../index.html">返回总首页 ↩</a>
-    <a onclick="showSection('home')">韩国首页</a>
-    <a onclick="showSection('visa')">签证与K-ETA</a>
-    <a onclick="showSection('hotel')">高性价比住宿</a>
-    <a onclick="showSection('traffic')">海岛与城市交通</a>
-    <a onclick="showSection('calculator')">预算计算器</a>
-    <a onclick="showSection('korean')">韩综潮流常用语</a>
-    <a onclick="showSection('community')">✨ 分享区</a>
+    <a onclick="showSection('home')" class="nav-item active">韩国首页</a>
+    <a onclick="showSection('prep')" class="nav-item">🧳 德标插头与NAVER导航</a>
+    <a onclick="showSection('route')" class="nav-item">🗺️ 首尔/釜山/济州精准路线</a>
+    <a onclick="showSection('food')" class="nav-item">🍗 必吃名店名录与退税解密</a>
+    <a onclick="showSection('hotel')" class="nav-item">🏨 平价住宿与汗蒸过夜</a>
+    <a onclick="showSection('visa')" class="nav-item">居留与签证</a>
+    <a onclick="showSection('traffic')" class="nav-item">海岛交通与T-Money</a>
+    <a onclick="showSection('calculator')" class="nav-item">💰 预算计算器</a>
+    <a onclick="showSection('korean')" class="nav-item">🗣️ 潮流常用语与翻译官</a>
+    <a onclick="showSection('community')" class="nav-item">✨ 情报看板</a>
 </nav>
 
 <div class="container">
@@ -62,190 +222,345 @@
     <!-- 【1. 首页板块】 -->
     <div id="home" class="section active">
         <h2>欢迎来到我的韩国旅行世界</h2>
-        <p>这里记录了我精心整理的韩国、釜山以及济州岛自由行攻略。无论是首尔明洞的时尚血拼，釜山海云台的绝美天空胶囊列车，还是济州岛果冻海的浪漫治愈，点击上方的导航栏，即可查看全套签证、性价比住宿、海岛通勤路线。页面内还集成了专属的韩币预算计算器和中韩智能双向翻译官哦！</p>
-        <img src="../kr-cover.jpg" alt="韩国风景" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+        <p>这里记录了我精心整理的韩国、釜山以及济州岛自由行全套攻略。包含 Catchtable 抢位的济州熟成到黑猪肉、BHC 芝士炸鸡、明洞王妃家韩牛烤肉与广藏市场富村生牛肉，配合 100-300 元级别的平价嘉宾馆与汗蒸幕过夜，解锁超划算游韩国！</p>
+        <img src="../kr-cover.jpg" alt="韩国风景" style="width: 100%; max-width: 650px; display: block; margin: 20px auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
     </div>
 
-    <!-- 【2. 签证与K-ETA板块】 -->
-    <div id="visa" class="section">
-        <h2>居留与签证办理须知</h2>
-        <p>
-            中国大陆居民前往韩国旅游，通常需要提前在韩国驻华各领事馆或指定代办机构办理个人旅游签证（C-3-9）。值得注意的是，**济州岛针对中国公民实施免签政策**，如果你只去济州岛且直飞往返，无需办理任何签证。但若包含首尔、釜山等转机或跨城行程，则必须持有有效的韩国签证。
-        </p>
+    <!-- 【2. 行前准备与地图避坑板块】 -->
+    <div id="prep" class="section">
+        <h2>🧳 韩国行前准备（德标转换插头、NAVER Map 导航避坑与 App 组合）</h2>
 
-        <h3>1. 韩国旅游签证及免签政策概览</h3>
+        <div class="warning-box">
+            <h3>🔌 1. 插头与电压规格（强提醒！）</h3>
+            <p><strong>标准电压：</strong>韩国为 <strong>220V (60Hz)</strong>。<br>
+            <strong>插头形状：</strong>韩国使用 <strong>德标双圆孔插座（2个粗圆孔）</strong>。中国的两脚扁头插头在韩国**无法直接插入**，必须随身携带**德标转接头**！注意：不要买成欧标细圆孔，细圆孔插入德标粗孔容易接触不良闪火花。</p>
+        </div>
+
+        <div class="warning-box" style="border-left-color: #0284c7; background: #f0f9ff;">
+            <h3>🗺️ 2. 地图导航避坑警示（为什么不能用 Google Maps？）</h3>
+            <p>由于韩国国家安全法限制地图地理数据输出，**Google Maps 在韩国完全无法进行步行 GPS 路线导航！**<br>
+            <strong>必须下载并使用：</strong><strong>NAVER Map</strong>（支持简体中文界面与中文搜索，精准显示公交到站时间、实时步行箭头与地铁出口编号）或 <strong>KakaoMap</strong>。</p>
+        </div>
+
+        <h3>3. 📱 韩国自由行必备神器 App</h3>
+        <ul>
+            <li><strong>导航地图：</strong><strong>NAVER Map</strong>（首选中文地图）</li>
+            <li><strong>打车 App：</strong><strong>Kakao T</strong>（全韩覆盖第一，支持使用现金或信用卡支付给司机）</li>
+            <li><strong>餐厅排号：</strong><strong>Catchtable</strong>（韩国网红烤肉/咖啡厅现场取号与预约）</li>
+            <li><strong>拍照翻译：</strong><strong>Papago</strong>（韩语翻译最准确，支持直接扫描拍照翻译韩文菜单）</li>
+        </ul>
+    </div>
+
+    <!-- 【3. 经典行程路线板块】 -->
+    <div id="route" class="section">
+        <h2>🗺️ 韩国三大热门目的地精准路线规划（标注地铁线、出口编号与巴士路号）</h2>
+
+        <div class="lang-card">
+            <h3>🛍️ 首尔潮流与文化 4 日深度游（含具体地铁出口与线路）</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 1（仁川 ➔ 明洞与夜景）：</strong>落地仁川机场 (ICN)，搭乘 **AREX 直达列车 (AREX Express Train)** 43 分钟到首尔站（票价 9500 韩币） ➔ 换乘 **首尔地铁 4 号线** 2 站到 **明洞站 (Myeong-dong 424)** 6号出口，入住明洞商圈。打卡乐天免税店与 N 首尔塔观景台缆车。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 2（古风文化体验）：</strong>明洞乘 **3 号线 (329 ➔ 327)** 到 **景福宫站 (Gyeongbokgung 327)** 5号出口。</li>
+                <li><span class="tag tag-green">打卡景点</span> <strong>景福宫</strong>：宫门外韩服店 **韩服男 (Hanboknam)** 租韩服（2小时 15000 韩币），**穿韩服可免 3000 韩币门票直入景福宫** ➔ 步行 15 分钟游览 **北村韩屋村**（嘉会洞传统古宅俯瞰屋顶）。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 3（潮牌探店狂欢）：</strong>安国站乘 **3号线 ➔ 乙支路3街换乘 2 号线** 到 **圣水站 (Seongsu 211)** 3号出口。打卡 **圣水洞 (Seongsu-dong)** 潮流街区与 Jennie 同款店铺 ➔ 乘 6 号线到 **汉江镇站 (Hangangjin 631)** 逛 **汉南洞** 独立设计师品牌 Mardi Mercredi ➔ 乘 2 号线到 **弘大入口站 (Hongik Univ. 239)** 9号出口看 K-POP 街头舞团。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 4（广藏市场美食）：</strong>乘 2 号线到 **乙支路4街站 (Euljiro 4-ga 216)** 4号出口 ➔ 广藏市场爆吃美食，随后搭 AREX 返程。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🌊 釜山海景与天空胶囊列车 2 日游</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 1（人文海景）：</strong>首尔站搭乘 **KTX 高铁** 2.5 小时直达釜山站（单程 59800 韩币） ➔ 乘釜山地铁 **1 号线到 土城站 (Toseong 109)** 6号出口，换乘 **1-1 / 2 路社区小巴** 10 分钟直达 **甘川文化村**（打卡彩色房子与小王子合影） ➔ 晚上在广安里海水浴场看广安大桥夜景。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 2（天空胶囊列车）：</strong>乘 2 号线到 **中洞站 (Jung-dong 202)** 步行 10 分钟到 **尾浦站 (Mipo Station)**。</li>
+                <li><span class="tag tag-green">打卡景点</span> <strong>海云台蓝线公园天空胶囊列车 (Sky Capsule)</strong>：必须提前 14 天在官网 `bluelinepark.com` 抢票，预订 **【尾浦 ➔ 青沙浦 (Mipo to Cheongsapo)】** 方向（单程 2 人胶囊车 35000 韩币），高空悬挂看海岸线落日 ➔ 打卡青沙浦灌篮高手海边铁路。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🌴 济州岛果冻海度假 3 日游（直飞免签）</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 1（东线风光）：</strong>在济州市外客运站搭乘 **201 路公交车** ➔ **月汀里海水浴场 (Woljeongri)**（打卡果冻海与白色风车） ➔ 乘坐 201 路到 **城山日出峰**（门票 5000 韩币） ➔ **涉地可支**。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 2（西线浪漫）：</strong>在济州市区搭乘 **202 路公交车** ➔ **涯月邑 (Aewol)** ➔ 漫步涯月海边散步路，打卡透明皮划艇与 Monsant 咖啡厅。</li>
+                <li><span class="tag tag-blue">交通路线</span> <strong>Day 3（市区扫货）：</strong>莲洞步行街与新罗免税店扫货美妆 ➔ 济州国际机场 (CJU) 免税离境。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 【4. 必吃名店推荐与退税大解密板块】 -->
+    <div id="food" class="section">
+        <h2>🍗 韩国必吃名店推荐名录、两种退税 (Tax Refund) 模式大解密</h2>
+
+        <h3>1. 🏆 精选韩国顶级必吃名店推荐（含具体店铺名称、招牌菜与人均消费）</h3>
+
+        <div class="shop-card">
+            <h4>🥩 【济州岛排名第一熟成黑猪肉】熟成到 (Sukseongdo 济州本店/涯月店)</h4>
+            <p><strong>推荐理由：</strong>韩国全网最火爆的熟成黑猪肉烤肉店！肉质熟成 960 小时，汁水充沛。</p>
+            <p><strong>必点招牌：</strong>**960 熟成骨三层肉 (Bone Samgyeopsal)** 搭配明太鱼籽与山葵（人均 35000 - 45000 韩币，约 180-230 RMB）。<br>
+            <strong>排队秘籍：</strong>必须下载 **Catchtable App** 提前在手机上现场取号，否则排队 2 小时以上！</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍗 【韩式芝士炸鸡鼻祖】BHC 炸鸡 (明洞店 / 弘大店)</h4>
+            <p><strong>推荐理由：</strong>韩剧同款神仙炸鸡！外皮极酥脆，裹满特制甜咸芝士散粉。</p>
+            <p><strong>必点招牌：</strong>**Pringles 芝士炸鸡 (Bburingkle)**（21000 韩币/整只，约 110 RMB） + 芝士球 (Cheese Balls 5500 韩币)。</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🥩 【明洞顶级韩牛烤肉】王妃家 烤肉明洞本店 (Wangbijib)</h4>
+            <p><strong>推荐理由：</strong>明洞口碑最好的韩牛烤肉店，服务员全程代烤。</p>
+            <p><strong>必点招牌：</strong>1++ 级别 **极上韩牛雪花肉** + 调味酱香猪排（人均 45000 - 65000 韩币，约 230-340 RMB）。</p>
+            <p><strong>地址：</strong>首尔市中区明洞 8ga-gil 26 2F（明洞站 9号出口步行 2 分钟）</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍞 【圣水洞工业风网红面包】Café Onion 圣水店</h4>
+            <p><strong>推荐理由：</strong>由旧工厂改建的废墟工业风咖啡厅，韩国网红打卡圣地。</p>
+            <p><strong>必点招牌：</strong>**雪山面包 (Pandoro)** 撒满白糖粉（6000 韩币，约 30 RMB） + 盐面包与美式咖啡。</p>
+            <p><strong>地址：</strong>首尔市城东区阿差山路 9-gil 8（圣水站 2号出口）</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍲 【广藏市场米其林必比登】富村生牛肉 (Buchon Yukhoe)</h4>
+            <p><strong>推荐理由：</strong>连续多年荣获米其林必比登推荐！现切新鲜鲜牛肉拌生鸡蛋黄与雪梨丝。</p>
+            <p><strong>必点招牌：</strong>**生牛肉拌梨丝 (Yukhoe)**（19000 韩币，约 100 RMB） + 生牛肉章鱼双拼。</p>
+            <p><strong>地址：</strong>首尔市钟路区钟路 200-4（广藏市场内）</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🥞 【广藏市场平价小吃】朴家绿豆饼 (Pak-ga Bindaetteok)</h4>
+            <p><strong>推荐理由：</strong>广藏市场最地道现炸绿豆饼，用猪油煎得金黄酥脆（5000 韩币/张，约 26 RMB）。</p>
+        </div>
+
+        <h3>2. 🛍️ 韩国两种退税 (Tax Refund) 操作全流程</h3>
+        <ul>
+            <li><strong>方式一：店铺现场直接扣税（Immediate Tax Refund，最推荐）</strong><br>在贴有 "Tax Refund" 标志的店铺（如 **Olive Young**、乐天百货、明洞各品牌专卖店），单笔消费满 <strong>15,000 韩币</strong> 时，结账前出示**护照原件**，收银员会直接按免税后的折扣价结算，无需去机场排队！</li>
+            <li><strong>方式二：机场自助机器退税 (Self-service Kiosk)</strong><br>若在开具了纸质退税单（Tax Refund Slip）的店家消费，离境机场海关扫描护照后自助领取现金。</li>
+        </ul>
+    </div>
+
+    <!-- 【5. 平价住宿与穷游精选板块】 -->
+    <div id="hotel" class="section">
+        <h2>🏨 韩国平价住宿与穷游精选（日均 80 - 300 RMB）</h2>
+        <p>专门为您筛选了位置极佳、价格实惠、含免费早餐与地道汗蒸幕过夜的平民化住宿方案：</p>
+
+        <h3>1. 🎒 穷游神器：明洞/弘大平价嘉宾馆与独立卫浴客栈（日均 180 - 300 RMB）</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">35,000 - 55,000 韩币/晚 (约 180-280 RMB)</span>
+            <h4>🛍️ 【明洞核心区超划算】 明洞 K 嘉宾馆 (K-Guesthouse Myeongdong 1)</h4>
+            <p><span class="tag tag-green">免费拉面早餐</span> <span class="tag tag-blue">明洞站 1号出口步行 2 分钟</span></p>
+            <p><strong>位置交通：</strong>首尔明洞站 1号出口步行 2 分钟，出门即是明洞步行街。</p>
+            <p><strong>推荐特色：</strong>独立卫浴房间干净紧凑，**公共厨房免费提供韩式辛拉面、吐司、果酱与现磨咖啡早餐**！人均 100 出头即可住在首尔核心区。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">38,000 - 60,000 韩币/晚 (约 200-310 RMB)</span>
+            <h4>⛪ 【明洞天主教堂景观】 明洞步步嘉宾馆 (Step Inn Myeongdong 1)</h4>
+            <p><span class="tag tag-green">高层夜景</span> <span class="tag tag-blue">明洞天主教堂对面</span></p>
+            <p><strong>位置交通：</strong>位于明洞大楼高层 15 楼，俯瞰明洞街区与天主教堂夜景。</p>
+            <p><strong>推荐特色：</strong>环境极具现代感，公共休息区视野辽阔。包免费自助早餐，床位与单人间均有独立隐私拉帘。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">22,000 - 35,000 韩币/床位 (约 110-180 RMB)</span>
+            <h4>🎉 【弘大派对背包客】 弘大 Time Travelers Party Hostel (时间旅行者青旅)</h4>
+            <p><span class="tag tag-purple">社交氛围爆棚</span> <span class="tag tag-blue">首尔弘大</span></p>
+            <p><strong>位置交通：</strong>地铁 2号线弘大入口站 8号出口步行 7 分钟。</p>
+            <p><strong>推荐特色：</strong>适合年轻独行客与学生！公共酒吧每晚举办啤酒社交聚会，老板超热情帮指路，穷游首选。</p>
+        </div>
+
+        <h3>2. ♨️ 特色极穷游：韩国汗蒸幕 (Jjimjilbang) 80 元过夜体验</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">16,000 - 20,000 韩币/过夜 (约 85-105 RMB)</span>
+            <h4>♨️ 【东大门 24 小时过夜汗蒸幕】 Sparex 汗蒸幕 (Sparex Dongdaemun)</h4>
+            <p><span class="tag tag-purple">超极穷游</span> <span class="tag tag-blue">东大门 Good Morning City B3</span></p>
+            <p><strong>位置交通：</strong>东大门历史文化公园站 14号出口直通大楼 B3。</p>
+            <p><strong>推荐特色：</strong>韩国最具特色的超划算过夜方式！付费约 85 人民币即可体验**24 小时大浴场泡汤、黄土窑汗蒸、凉席地暖睡觉**！内部设冰水甜酒 (Sikhye) 与烤鸡蛋小卖部，有独立女性专用睡眠区。</p>
+        </div>
+
+        <h3>3. 🏨 平价商务：西面与济州市区高性价比酒店（日均 230 - 450 RMB）</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">45,000 - 70,000 韩币/晚 (约 230-360 RMB)</span>
+            <h4>🌴 【济州岛莲洞平价精品】 济州线酒店 (Line Hotel Jeju)</h4>
+            <p><span class="tag tag-green">机场极近</span> <span class="tag tag-blue">济州市区莲洞步行街</span></p>
+            <p><strong>位置交通：</strong>位于济州市区莲洞步行街正中心，距机场仅 5 分钟车程。</p>
+            <p><strong>推荐特色：</strong>价格便宜，房间空间比首尔大一倍！下楼就是便利店与黑猪肉街，适合济州岛预算有限自由行。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">65,000 - 95,000 韩币/晚 (约 340-490 RMB)</span>
+            <h4>🌊 【釜山西面商圈中心】 釜山 Arban Hotel (阿班酒店)</h4>
+            <p><span class="tag tag-green">大房间浴缸</span> <span class="tag tag-blue">釜山西面站</span></p>
+            <p><strong>位置交通：</strong>釜山地铁 1/2号线交汇枢纽西面站 7号出口步行 5 分钟。</p>
+            <p><strong>推荐特色：</strong>性价比碾压海云台高价海景房！位于釜山最繁华的西面交汇站，房间超大且全系配备大浴缸，包含空中花园。</p>
+        </div>
+    </div>
+
+    <!-- 【6. 居留与签证板块】 -->
+    <div id="visa" class="section">
+        <h2>🛂 韩国签证办理、免签政策与 K-ETA 入境全攻略</h2>
+        <p>赴韩国旅游视目的地不同分为免签与个人签证。济州岛直飞享有 30 天免签，前往首尔/釜山等陆地城市则需提前办妥签证。</p>
+
+        <h3>1. 📄 常见韩国旅游签证与免签政策</h3>
         <table>
             <tr>
-                <th>目的地/签证类型</th>
-                <th>有效期/停留期</th>
-                <th>入境条件</th>
-                <th>核心申请材料精简版</th>
+                <th>签证/入境类型</th>
+                <th>停留期限</th>
+                <th>核心申请条件与政策</th>
+                <th>适合人群与优势</th>
             </tr>
             <tr>
-                <td><strong>济州岛（直飞免签）</strong></td>
-                <td>最长停留 30 天</td>
-                <td>必须直航往返、不出济州岛</td>
-                <td>有效护照、往返机票行程单、酒店预订单</td>
+                <td><strong>济州岛直飞免签</strong></td>
+                <td>30 天</td>
+                <td>持有效护照直飞济州岛（不得转机前往首尔/釜山等韩国本土城市），备齐往返机票与酒店单。</td>
+                <td>度假海岛游、极速拎包就走客群</td>
             </tr>
             <tr>
-                <td>单次旅游签证 (C-3-9)</td>
-                <td>3个月有效 / 停留90天</td>
-                <td>前往韩国全境通用</td>
-                <td>身份证原件、申请表、财产证明（流水或社保）</td>
+                <td><strong>C-3-9 个人单次签证</strong></td>
+                <td>90 天</td>
+                <td>提供近 6 个月银行流水、工作证明或资产证明，通过指定送签机构递交。</td>
+                <td>首次前往首尔/釜山观光游客</td>
             </tr>
             <tr>
-                <td>五年多次往返签证</td>
-                <td>5年有效 / 每次停留30天</td>
-                <td>符合特定学历或财力门槛</td>
-                <td>本科以上学历（学信网）或特定职业、高纳税证明</td>
+                <td><strong>5 年多次往返签证<br>(大学在读/毕业生)</strong></td>
+                <td>每次 30 天</td>
+                <td>教育部学信网打印《教育部学籍/学历在线验证报告》（全日制本科在读或毕业生），**免资产证明直接申请**！</td>
+                <td>高校学生、青年白领、高频韩流迷</td>
+            </tr>
+            <tr>
+                <td><strong>10 年多次往返签证</strong></td>
+                <td>每次 90 天</td>
+                <td>具备硕士及以上学位、或特定专业职业资格（医生、律师、大学教授等）。</td>
+                <td>商务出行、商务休闲深度游玩家</td>
             </tr>
         </table>
 
-        <h3>2. 大学生简化办理优势</h3>
-        <p>韩国签证对学生群体非常友好。中国**四年制全日制大学在校生及毕业生（通过学信网验证）**，在申请单次或5年多次旅游签证时，通常可以免除提交繁琐的房产、大额存款或个税流水证明，只需提供学信网电子注册备案表和在读/毕业证明即可迅速获签。</p>
-
-        <h3>3. 出入境小贴士</h3>
+        <h3>2. 📲 Q-Code 电子检疫与海关避坑提醒</h3>
         <ul>
-            <li><strong>海关健康申报</strong>：入境韩国前，需按最新要求在纸质单或Q-CODE网站完成健康申报。</li>
-            <li><strong>免签入境济州岛注意</strong>：虽然免签，但海关抽查较为严格，请务必随身打印好**全英文的往返机票确认单和不间断的酒店入住凭证**，以备查验，防止拒绝入境。</li>
+            <li><strong>Q-Code 提前申报：</strong>建议在出发前 3 天通过韩国 Q-Code 官网 (`qcode.kdca.go.kr`) 填写健康信息并生成 QR 二维码，入境时扫码快速过关。</li>
+            <li><strong>海关现金限制：</strong>携带外币或韩币现金超过 10,000 美元（或等值）需如实向海关申报；海关严禁携带任何生鲜肉类、香肠、水果及违反知识产权的仿冒品。</li>
         </ul>
     </div>
 
-    <!-- 【3. 高性价比住宿板块】 -->
-    <div id="hotel" class="section">
-        <h2>釜山、济州岛及首尔高性价比住宿推荐</h2>
-        <p>为你精选卡死在“治安极佳、下楼即是核心地铁站或热门海滩”硬性条件下的高性价比落脚点。不管是单人床位还是独立房间，都能实现省钱与舒适两不误。</p>
-        
-        <hr>
-
-        <h3>🌊 釜山篇：绝美海景与便利通勤选区</h3>
-        <p>第一次去釜山，首推住在<strong>海云台/广安里</strong>（下楼就是海滩、看广安大桥夜景超绝）或者<strong>西面站/釜山站周边</strong>（交通枢纽、换乘去哪都方便）。</p>
-        <ul>
-            <li>
-                <strong>广安里海景体验：釜山大桥好客青旅 (Hotel 1 / Hostel Area)</strong>
-                <ul>
-                    <li><strong>特色：</strong>拥有直面广安里大海的大落地窗。公共空间宽敞，躺在床上就能看日出与晚上的大桥无人机秀，极具浪漫韩剧氛围。</li>
-                    <li><strong>参考价格：</strong>约 160 - 260 RMB / 床位</li>
-                </ul>
-            </li>
-            <li>
-                <strong>西面站枢纽：相铁FREESA INN 釜山西面 (Sotetsu Fresa Inn)</strong>
-                <ul>
-                    <li><strong>特色：</strong>日系品质连锁进驻韩国。全自助办理，大堂备品齐全。位于釜山最热闹的“西面商圈”，楼下全是网红咖啡厅和帐篷马车小吃摊。</li>
-                    <li><strong>参考价格：</strong>约 350 - 500 RMB / 双人独立房间</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h3>🌴 济州岛篇：免签度假村与核心商圈选区</h3>
-        <p>济州岛没有地铁，主要靠公交。住宿推荐住在**济州市区（莲洞/老济州）**（离机场近、吃饭免税店极方便）或者**西归浦市区/中文旅游区**（靠近南端核心瀑布和火山地貌景点）。</p>
-        <ul>
-            <li>
-                <strong>老济州核心区：济州贝斯特韦斯特酒店 (Best Western Jeju)</strong>
-                <ul>
-                    <li><strong>特色：</strong>性价比逆天的星级连锁。过马路就是新罗和乐天免税店，下楼有直接去往各大热门海滩和机场的急行公交站，对不赶时间的自由行极为友好。</li>
-                    <li><strong>参考价格：</strong>约 380 - 550 RMB / 独立套房</li>
-                </ul>
-            </li>
-            <li>
-                <strong>咸德海滩周边：济州海边简易青旅公寓</strong>
-                <ul>
-                    <li><strong>特色：</strong>紧邻网红咸德“果冻海”，下楼就是极其细腻的白沙滩和咖啡一条街。清晨开窗就能吹到太平洋的海风。</li>
-                    <li><strong>参考价格：</strong>约 150 - 220 RMB / 床位</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <!-- 【4. 海岛与城市交通板块】 -->
+    <!-- 【7. 交通与 T-Money 卡板块】 -->
     <div id="traffic" class="section">
-        <h2>交通保姆级指南（T-money、釜山轻轨、济州岛急行巴士）</h2>
-        <p>韩国交通工具十分发达，刷卡、导航、海岛通勤看这一篇就够：</p>
+        <h2>🚇 韩国交通卡 (T-Money/NAMANE)、城市导航与 KTX 高铁全攻略</h2>
 
-        <hr>
+        <h3>1. 💳 T-Money 卡与 NAMANE 定制交通卡</h3>
+        <div class="shop-card" style="border-left-color: #0284c7; background: #f0f9ff;">
+            <h4>📱 交通卡购买、充值与换乘免费规则</h4>
+            <ul>
+                <li><strong>T-Money 购买与充值：</strong>机场/便利店（CU, GS25, 7-Eleven）均可购买（卡费约 3,000-5,000 韩币），可在便利店或地铁售票机使用**韩币现金充值**。</li>
+                <li><strong>NAMANE DIY 联名卡：</strong>支持在机场自助机用自己手机照片定制卡面！具备交通卡与预付信用卡双功能，可用海外信用卡在 App 充值。</li>
+                <li><strong>30分钟换乘优惠：</strong>地铁与公交之间在 30 分钟内换乘（21:00-07:00 为 1 小时）享免费换乘！**切记上车刷卡、下车也必须刷卡**（未刷下车卡将被扣除全程最高票价并失效换乘优惠）。</li>
+            </ul>
+        </div>
 
-        <h3>一、 市区通用：T-money 交通卡</h3>
+        <h3>2. 🗺️ 韩国出行地图与打车 App 避坑指南</h3>
+        <table>
+            <tr>
+                <th>App 名称</th>
+                <th>核心功能与适用场景</th>
+                <th>避坑与使用建议</th>
+            </tr>
+            <tr>
+                <td><strong>Naver Map / 韩游网地图</strong></td>
+                <td>精准路线规划、公交实时到站预估、路线步行导航。</td>
+                <td>**切勿使用谷歌地图 (Google Maps)**！韩国限制地理地图数据导出，谷歌地图在韩国无法提供步行与公交导航。</td>
+            </tr>
+            <tr>
+                <td><strong>Kakao T (韩国打车神器)</strong></td>
+                <td>叫 Kakao Taxi 计程车，无需与司机口头沟通目的地址。</td>
+                <td>可绑定国际信用卡或勾选“直接付给司机 (Pay to Driver)”，下车刷信用卡或付现金。</td>
+            </tr>
+        </table>
+
+        <h3>3. 🚄 首尔至釜山 KTX 高铁购票全流程</h3>
         <ul>
-            <li><strong>一卡走天下</strong>：落地后直接在机场或任何便利店（CU/GS25/7-11）购买一张 **T-money卡**（工本费通常4000韩币），在便利店用现金韩币充值。</li>
-            <li><strong>全国通用与换乘优惠</strong>：全韩国的地铁、公交、甚至济州岛的巴士和出租车都能刷它。在首尔和釜山，**地铁和公交之间换乘享有免费或极高折扣的优惠**（下车记得也要刷一下卡）。</li>
-        </ul>
-
-        <h3>二、 釜山交通：浪漫的天空胶囊列车</h3>
-        <ul>
-            <li><strong>城市地铁</strong>：釜山地铁1号线、2号线交汇，直接看懂中文和数字编码即可轻松搭乘。</li>
-            <li><strong>尾浦-青沙浦天空胶囊 (Sky Capsule)</strong>：前往釜山绝不可错过的网红小火车。彩色复古的4人小车厢悬挂在高空，一路上紧贴釜山海岸线。**必须提前在官方网站预约订票**，现场去基本买不到空位。</li>
-        </ul>
-
-        <h3>三、 济州岛交通：没车也能玩转大巴逻辑</h3>
-        <ul>
-            <li><strong>机场急行巴士（1xx路）</strong>：从机场出发快速贯穿全岛的核心动脉，停靠站少，速度极快（如101路、102路直达东线和西线各大海滩）。</li>
-            <li><strong>干线巴士（2xx路）</strong>：深入各大景点、涉地可支、城山日出峰的主要通勤工具。单次刷卡统一价，非常良心。</li>
-            <li><strong>地图导航警示</strong>：**在韩国千万不要用 Google Maps 导航，数据不准！** 必须下载 **NAVER Map（有中文版）** 或者 **Kakao Map**，能精确告诉你巴士还有几分钟到站、在哪一侧上车。</li>
+            <li><strong>车程与路线：</strong>首尔站 (Seoul Station) 至釜山站 (Busan Station) 搭乘 KTX 仅需 2.5 小时，单程票价约 59,800 韩币。</li>
+            <li><strong>无闸机进站与订票：</strong>可提前 30 天在 LetsKorail 官方网站在线购票，打印 E-ticket 电子票。韩国高铁站**无进出站检票闸机**，凭电子票直接乘车，车上由列车员按座位系统抽查。</li>
         </ul>
     </div>
 
-    <!-- 【5. 预算计算器】 -->
+    <!-- 【8. 预算计算器】 -->
     <div id="calculator" class="section">
-        <h2>💰 韩币旅行预算智能计算器</h2>
+        <h2>💰 韩国行程预算智能计算器</h2>
         <div class="calc-box">
             <div class="calc-input">
                 <label>机票/往返总计：</label>
-                <input type="number" id="flight" value="0"> 元 (RMB)
+                <input type="number" id="flight" value="1500"> 元 (RMB)
             </div>
             <div class="calc-input">
-                <label>酒店住宿/每晚：</label>
-                <input type="number" id="hotelPrice" value="0"> 万韩币 (KRW) × 
-                <input type="number" id="hotelDays" value="1" style="width:60px;"> 晚
+                <label>嘉宾馆/每晚：</label>
+                <input type="number" id="hotelPrice" value="45000"> 韩元 (KRW) × 
+                <input type="number" id="hotelDays" value="4" style="width:60px;"> 晚
             </div>
             <div class="calc-input">
-                <label>每日餐饮/血拼：</label>
-                <input type="number" id="food" value="5"> 万韩币 (KRW) × 
-                <input type="number" id="playDays" value="1" style="width:60px;"> 天
+                <label>每日餐饮/玩乐：</label>
+                <input type="number" id="food" value="40000"> 韩元 (KRW) × 
+                <input type="number" id="playDays" value="5" style="width:60px;"> 天
             </div>
             <div class="calc-input">
-                <label>韩币参考汇率：</label>
-                <input type="number" id="exchangeRate" value="185" style="width:80px;"> (1元人民币 ≈ ? 韩币)
+                <label>韩元参考汇率：</label>
+                <input type="number" id="exchangeRate" value="190" style="width:80px;" step="5"> (1元人民币 ≈ ? 韩币)
             </div>
             <button onclick="calculateBudget()">一键计算总预算 (RMB)</button>
-            <h3 style="margin-top: 15px; color: #cd2e3a;">预估折合总花费：<span id="totalResult">0</span> 元人民币</h3>
+            <h3 style="margin-top: 15px; color: var(--primary);">预估折合总花费：<span id="totalResult">0</span> 元人民币</h3>
         </div>
     </div>
 
-    <!-- 【6. 韩综潮流常用语】 -->
+    <!-- 【9. 常用语与翻译官】 -->
     <div id="korean" class="section">
-        <h2>🗣️ 潮流韩语随身宝与智能翻译官</h2>
-        <p>精选韩国街头、点餐、追星血拼高频短语，配合下方的中韩双向在线翻译官，让你沟通无障碍！</p>
-        
-        <h3>1. 精选旅游生存高频常用语</h3>
-        <div class="lang-card"><strong>你好/打扰一下：</strong> 안녕하세요 (Annyeonghaseyo) - 你好 <button class="kr-btn" onclick="speak('안녕하세요')">🔊 播放</button></div>
-        <div class="lang-card"><strong>非常感谢：</strong> 감사합니다 (Gamsahamnida) - 谢谢您 <button class="kr-btn" onclick="speak('감사합니다')">🔊 播放</button></div>
-        <div class="lang-card"><strong>请给我这个：</strong> 이거 주세요 (Igeo juseyo) - 请给我拿这个（配合手指点餐神句） <button class="kr-btn" onclick="speak('이거 주세요')">🔊 播放</button></div>
-        <div class="lang-card"><strong>多少钱：</strong> 얼마예요? (Eolmayeyo?) - 请问这个多少钱？ <button class="kr-btn" onclick="speak('얼마예요')">🔊 播放</button></div>
-        <div class="lang-card"><strong>有洗手间吗：</strong> 화장실 어디예요? (Hwajangsil eodiyeyo?) - 请问洗手间在哪里？ <button class="kr-btn" onclick="speak('화장실 어디예요')">🔊 播放</button></div>
-        <div class="lang-card"><strong>可以刷卡吗：</strong> 카드 돼요? (Kadeu dwaeyo?) - 可以刷卡结算吗？ <button class="kr-btn" onclick="speak('카드 돼요')">🔊 播放</button></div>
+        <h2>🗣️ 常用韩语随身宝与智能双向实时翻译官</h2>
+        <p>包含韩国自由行最实用的点餐、追星、购物退税与交通问路口语，支持一键高音质语音朗读！</p>
 
-        <h3>2. 🌐 智能联网双向翻译官（中⇄韩）</h3>
+        <h3>1. 💬 韩国旅行高频必备常用语 (含 🔊 试听发音)</h3>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">👋 日常礼貌与问候</h4>
+        <div class="lang-card"><strong>你好：</strong> 안녕하세요 (An-nyeong-ha-se-yo) <button class="kr-btn" onclick="speak('안녕하세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>谢谢：</strong> 감사합니다 (Gam-sa-ham-ni-da) <button class="kr-btn" onclick="speak('감사합니다', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>不好意思/对不起：</strong> 죄송합니다 (Jway-song-ham-ni-da) <button class="kr-btn" onclick="speak('죄송합니다', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>没关系：</strong> 괜찮아요 (Gwaen-chan-a-yo) <button class="kr-btn" onclick="speak('괜찮아요', 'ko-KR')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🍗 餐厅点餐与求助</h4>
+        <div class="lang-card"><strong>请给我菜单：</strong> 메뉴판 주세요 (Me-nyu-pan ju-se-yo) <button class="kr-btn" onclick="speak('메뉴판 주세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请给我冰水：</strong> 물 좀 주세요 (Mul jom ju-se-yo) <button class="kr-btn" onclick="speak('물 좀 주세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请不要太辣：</strong> 덜 맵게 해주세요 (Deol maep-ge hae-ju-se-yo) <button class="kr-btn" onclick="speak('덜 맵게 해주세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>我要这个（指着菜单）：</strong> 이것 주세요 (I-geot ju-se-yo) <button class="kr-btn" onclick="speak('이것 주세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请帮我结账：</strong> 계산해 주세요 (Gye-san-hae-ju-se-yo) <button class="kr-btn" onclick="speak('계산해 주세요', 'ko-KR')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🛍️ 购物与免税问询</h4>
+        <div class="lang-card"><strong>这个多少钱？：</strong> 얼마예요? (Eol-ma-ye-yo?) <button class="kr-btn" onclick="speak('얼마예요?', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>可以退税吗？：</strong> 택스 리펀 돼요? (Tax refund dwae-yo?) <button class="kr-btn" onclick="speak('택스 리펀 돼요?', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>可以便宜点吗？：</strong> 깎아주세요 (Kkak-a-ju-se-yo) <button class="kr-btn" onclick="speak('깎아주세요', 'ko-KR')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🚕 交通与问路</h4>
+        <div class="lang-card"><strong>请问洗手间在哪里？：</strong> 화장실이 어디예요? (Hwa-jang-sil-i eo-di-ye-yo?) <button class="kr-btn" onclick="speak('화장실이 어디예요?', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请带我去这里（展示地址）：</strong> 여기로 가주세요 (Yeo-gi-ro ga-ju-se-yo) <button class="kr-btn" onclick="speak('여기로 가주세요', 'ko-KR')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请打表（打车时）：</strong> 미터기 켜주세요 (Mi-teo-gi kyeo-ju-se-yo) <button class="kr-btn" onclick="speak('미터기 켜주세요', 'ko-KR')">🔊 播放</button></div>
+
+        <h3>2. 🧰 现场应急智能朗读与翻译演示板</h3>
         <div class="translator-box">
-            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()">当前模式：🇨🇳 中文 ➜ 🇰🇷 韩语 (点击切换)</button>
-            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句：</p>
-            
-            <div class="trans-input">
-                <textarea id="inputText" placeholder="例如：请问去海云台天空胶囊列车的站台怎么走？ / 麻烦帮我多拿一床被子。"></textarea>
+            <h4>📱 现场快速展示与语音播放工具</h4>
+            <p>输入或选择下方常用句子，直接点击播放发音给韩国店员/司机听：</p>
+            <textarea id="krText" placeholder="在此输入需要向店员出示或播放的中文/韩语句子...">화장실이 어디예요? (请问洗手间在哪里？)</textarea>
+            <div>
+                <button onclick="speakCurrentKr()">🔊 播放此句韩语发音</button>
+                <button style="background: var(--secondary);" onclick="copyKrText()">📋 复制文本</button>
             </div>
-            <button onclick="translateText()">一键联网翻译</button>
-            
-            <div id="resultBox" class="trans-result">
-                <strong id="resultTitle">翻译结果：</strong>
-                <p id="translatedText" style="font-size: 1.2em; color: #0047a0; font-weight: bold; margin: 5px 0;"></p>
-                <button class="kr-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读结果</button>
+            <div style="margin-top: 12px; font-size: 0.9em; color: var(--text-muted);">
+                <strong>一键快捷载入：</strong>
+                <button class="kr-btn" style="margin: 3px;" onclick="setKrInput('봉투 필요 없어요. (不需要袋子。)', '봉투 필요 없어요')">봉투 필요 없어요 (不要袋子)</button>
+                <button class="kr-btn" style="margin: 3px;" onclick="setKrInput('영수증 주세용. (请给我收据。)', '영수증 주세요')">영수증 주세요 (要收据)</button>
+                <button class="kr-btn" style="margin: 3px;" onclick="setKrInput('사진 한 장만 찍어주실 수 있나요? (能帮我们拍张照吗？)', '사진 한 장만 찍어주실 수 있나요')">사진 찍어주세요 (帮忙拍照)</button>
             </div>
         </div>
     </div>
 
-    <!-- 【7. 分享区板块】 -->
+    <!-- 【10. 分享区板块】 -->
     <div id="community" class="section">
-        <h2>🌍 欧巴欧尼情报共享看板</h2>
-        <p style="color: #666; font-size: 0.95em;">欢迎来到韩国情报站！你可以在下方自由发帖、分享你最新的西归浦出海追海豚实录、广安里绝美咖啡厅机位或者弘大盲盒血拼战利品。</p>
+        <h2>🌍 情报共享看板</h2>
         <script src="https://giscus.app/client.js"
             data-repo="AshleyQAQ/ashleytripshare"
             data-repo-id="R_kgDOS1ZmWA"
@@ -266,36 +581,41 @@
 </div>
 
 <script>
-    // 1. 切换 Tab 逻辑
+    let sourceLang = "zh-CN";
+    let targetLang = "ko";
+    let recognition = null;
+
     function showSection(sectionId) {
         const sections = document.querySelectorAll('.section');
-        sections.forEach(sec => {
-            sec.classList.remove('active');
-        });
+        sections.forEach(sec => sec.classList.remove('active'));
+        
         const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
+        if (targetSection) targetSection.classList.add('active');
+
+        const navLinks = document.querySelectorAll('#mainNav .nav-item');
+        navLinks.forEach(link => {
+            if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(sectionId)) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 2. 考虑万元韩币单位的预算计算器
     function calculateBudget() {
         const flight = parseFloat(document.getElementById('flight').value) || 0;
-        const hotelPriceWan = parseFloat(document.getElementById('hotelPrice').value) || 0;
+        const hotelPriceKRW = parseFloat(document.getElementById('hotelPrice').value) || 0;
         const hotelDays = parseInt(document.getElementById('hotelDays').value) || 0;
-        const foodWan = parseFloat(document.getElementById('food').value) || 0;
+        const foodKRW = parseFloat(document.getElementById('food').value) || 0;
         const playDays = parseInt(document.getElementById('playDays').value) || 0;
-        const rate = parseFloat(document.getElementById('exchangeRate').value) || 185;
+        const rate = parseFloat(document.getElementById('exchangeRate').value) || 190;
 
-        // 注意：输入的酒店和餐饮是以“万韩币”为单位的
-        const totalKRW = (hotelPriceWan * hotelDays * 10000) + (foodWan * playDays * 10000);
+        const totalKRW = (hotelPriceKRW * hotelDays) + (foodKRW * playDays);
         const totalRMB = flight + (totalKRW / rate);
         
         document.getElementById('totalResult').innerText = totalRMB.toFixed(0);
     }
-
-    // 3. 语音引擎自适应
-    let currentMode = "zh-to-kr"; 
 
     function speak(text, lang = 'ko-KR') {
         if ('speechSynthesis' in window) {
@@ -308,61 +628,27 @@
         }
     }
 
-    // 4. 双向翻译模式切换
-    function toggleTranslationMode() {
-        const modeBtn = document.getElementById('modeBtn');
-        const inputTip = document.getElementById('inputTip');
-        const inputText = document.getElementById('inputText');
-        
-        if (currentMode === "zh-to-kr") {
-            currentMode = "kr-to-zh";
-            modeBtn.innerText = "当前模式：🇰🇷 韩语 ➜ 🇨🇳 中文 (点击切换)";
-            inputTip.innerText = "Please input Korean below:";
-            inputText.placeholder = "e.g. 이거 얼마예요? 면세 돼요?";
-        } else {
-            currentMode = "zh-to-kr";
-            modeBtn.innerText = "当前模式：🇨🇳 中文 ➜ 🇰🇷 韩语 (点击切换)";
-            inputTip.innerText = "请在下方输入中文字句：";
-            inputText.placeholder = "例如：请问去海云台天空胶囊列车的站台怎么走？";
+    function speakCurrentKr() {
+        const txt = document.getElementById('krText').value;
+        if (!txt) return;
+        const cleanText = txt.split('(')[0].trim();
+        speak(cleanText, 'ko-KR');
+    }
+
+    function setKrInput(text, speakText) {
+        document.getElementById('krText').value = text;
+        speak(speakText, 'ko-KR');
+    }
+
+    function copyKrText() {
+        const txt = document.getElementById('krText').value;
+        if (txt) {
+            navigator.clipboard.writeText(txt);
+            alert("已复制到剪贴板！");
         }
     }
 
-    // 5. 联网翻译引擎：接入免费开放 Google 翻译 API
-    async function translateText() {
-        const text = document.getElementById('inputText').value.trim();
-        const resultBox = document.getElementById('resultBox');
-        const translatedTextDiv = document.getElementById('translatedText');
-        const playBtn = document.getElementById('playTransBtn');
-        
-        if (!text) {
-            alert(currentMode === "zh-to-kr" ? "请先输入需要翻译的字句！" : "번역할 텍스트를 입력해주세요!");
-            return;
-        }
-
-        translatedTextDiv.innerText = currentMode === "zh-to-kr" ? "联网翻译中，请稍候..." : "번역 중...";
-        resultBox.style.display = "block";
-
-        const sl = currentMode === "zh-to-kr" ? "zh-CN" : "ko";
-        const tl = currentMode === "zh-to-kr" ? "ko" : "zh-CN";
-        const speakLang = tl === "ko" ? "ko-KR" : "zh-CN";
-
-        try {
-            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data && data[0] && data[0][0]) {
-                const result = data[0][0][0];
-                translatedTextDiv.innerText = result;
-                playBtn.onclick = function() { speak(result, speakLang); };
-            } else {
-                translatedTextDiv.innerText = "翻译失败，请重试。";
-            }
-        } catch (error) {
-            console.error(error);
-            translatedTextDiv.innerText = "网络请求错误，请重试。";
-        }
-    }
+    calculateBudget();
 </script>
 
 </body>

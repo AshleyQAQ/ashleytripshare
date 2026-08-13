@@ -3,51 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的日本旅游攻略一站式指南</title>
+    <title>🌸 日本自由行终极保姆级攻略 - AshleyTripShare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
-        header { background: #e63946; color: white; padding: 20px; text-align: center; }
-        
-        /* 导航栏保持居中排列 */
-        nav { display: flex; justify-content: center; background: #1d3557; }
-        nav a { color: white; padding: 14px 20px; text-decoration: none; text-align: center; cursor: pointer; }
-        nav a:hover { background: #457b9d; }
-        
-        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* 控制板块显示隐藏 */
-        .section { display: none; }
+        :root {
+            --primary: #e63946;
+            --primary-hover: #c1272d;
+            --secondary: #1d3557;
+            --secondary-hover: #457b9d;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header { 
+            background: linear-gradient(135deg, #e63946 0%, #1d3557 100%); 
+            color: white; 
+            padding: 45px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0 0 10px 0; font-size: 2.3em; font-weight: 700; }
+        header p { margin: 0; opacity: 0.9; font-weight: 300; font-size: 1.1em; }
+
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            background: var(--secondary); 
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a { 
+            color: rgba(255,255,255,0.88); 
+            padding: 13px 16px; 
+            text-decoration: none; 
+            text-align: center; 
+            cursor: pointer; 
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a.active { 
+            color: white; 
+            background: rgba(255,255,255,0.12); 
+            border-bottom-color: var(--primary);
+        }
+
+        .container { 
+            max-width: 1050px; 
+            margin: 30px auto 60px auto; 
+            padding: 0 20px;
+        }
+
+        .section { 
+            display: none; 
+            background: var(--card-bg); 
+            padding: 32px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+            margin-bottom: 30px; 
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
         .section.active { display: block; }
-        
-        h2 { border-bottom: 2px solid #e63946; padding-bottom: 10px; color: #1d3557; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #f1faee; }
-        .calc-box, .lang-card { background: #f1faee; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 5px solid #e63946; }
-        .calc-input { margin: 10px 0; }
-        .calc-input label { display: inline-block; width: 100px; }
-        .calc-input input { padding: 5px; width: 150px; }
-        button { background: #e63946; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; }
-        button:hover { background: #c1121f; }
-        .jp-btn { background: #457b9d; margin-left: 10px; padding: 3px 10px; font-size: 0.9em; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            border-bottom: 3px solid var(--primary); 
+            padding-bottom: 10px; 
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+
+        h3 { color: #2d3748; margin-top: 24px; font-size: 1.25em; border-left: 4px solid var(--primary); padding-left: 10px; }
+        h4 { color: #4a5568; margin-top: 16px; font-size: 1.05em; }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        th, td { border: 1px solid #e2e8f0; padding: 12px 14px; text-align: left; }
+        th { background: #f1f5f9; color: var(--secondary); font-weight: 600; }
+
+        .calc-box, .lang-card, .translator-box, .shop-card, .hotel-card { 
+            background: #f8fafc; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 16px 0; 
+            border-left: 5px solid var(--primary); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .shop-card { border-left-color: #10b981; background: #ecfdf5; }
+        .hotel-card { border-left-color: #0284c7; background: #f0f9ff; }
+
+        .calc-input { margin: 12px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .calc-input label { min-width: 130px; font-weight: 500; }
+        .calc-input input { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95em; }
+
+        button { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 10px 18px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: var(--primary-hover); }
+
+        .jp-btn { 
+            background: var(--secondary); 
+            margin-left: 10px; 
+            padding: 6px 14px; 
+            font-size: 0.88em; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: background 0.2s;
+        }
+
+        .jp-btn:hover { background: var(--secondary-hover); }
+
+        textarea { 
+            width: 100%; 
+            height: 90px; 
+            padding: 12px; 
+            box-sizing: border-box; 
+            margin-bottom: 12px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            font-family: inherit;
+            font-size: 0.95em;
+        }
+
+        .trans-result { 
+            display: none; 
+            margin-top: 15px; 
+            padding: 16px; 
+            background: #fff; 
+            border: 1px dashed var(--secondary); 
+            border-radius: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #334155;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-purple { background: #f3e8ff; color: #6b21a8; }
+        .price-badge { font-weight: 700; color: #e63946; float: right; font-size: 1.1em; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🌸 我的日本旅游攻略 🌸</h1>
-    <p>一站式霓虹国保姆级旅行指南</p>
+    <h1>🌸 日本自由行终极保姆级攻略 🌸</h1>
+    <p>标注具体名店地址与招牌菜、百元级平民住宿与7日精准地铁路线</p>
 </header>
 
-<nav>
+<nav id="mainNav">
     <a href="../index.html">返回总首页 ↩</a>
-    <a onclick="showSection('home')">日本首页</a>
-    <a onclick="showSection('visa')">签证</a>
-    <a onclick="showSection('hotel')">住宿</a>
-    <a onclick="showSection('traffic')">交通</a>
-    <a onclick="showSection('calculator')">预算计算器</a>
-    <a onclick="showSection('japanese')">常用日语</a>
-    <a onclick="showSection('community')">✨ 分享区</a>
+    <a onclick="showSection('home')" class="nav-item active">日本首页</a>
+    <a onclick="showSection('prep')" class="nav-item">🧳 入境与行前准备</a>
+    <a onclick="showSection('route')" class="nav-item">🗺️ 7日精准路线与交通</a>
+    <a onclick="showSection('food')" class="nav-item">🍣 Tabelog 顶级名店全名录</a>
+    <a onclick="showSection('hotel')" class="nav-item">🏨 平价住宿与穷游精选</a>
+    <a onclick="showSection('visa')" class="nav-item">居留与签证</a>
+    <a onclick="showSection('traffic')" class="nav-item">交通与西瓜卡</a>
+    <a onclick="showSection('calculator')" class="nav-item">💰 预算计算器</a>
+    <a onclick="showSection('japanese')" class="nav-item">🗣️ 常用语与翻译官</a>
+    <a onclick="showSection('community')" class="nav-item">✨ 情报看板</a>
 </nav>
 
 <div class="container">
@@ -55,492 +221,380 @@
     <!-- 【1. 首页板块】 -->
     <div id="home" class="section active">
         <h2>欢迎来到我的日本旅行世界</h2>
-        <p>这里记录了我精心整理的日本旅游攻略。点击上方的导航栏，可以查看签证流程、住宿推荐、交通路线，还可以使用我制作的预算计算器和日语随身宝哦！</p>
-        <img src="KyotoKamogawa.JPG" alt="日本风景" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+        <p>这里记录了我精心整理的日本自由行全套攻略。包含超级详细的 Tabelog 顶级美食店名、招牌菜与人均预算，配合 100-300 元级别的平价商务酒店、网咖包间过夜、免费早餐连锁与极简胶囊，轻松实现高品质游日本！</p>
+        <img src="KyotoKamogawa.JPG" alt="日本风景" style="width: 100%; max-width: 650px; display: block; margin: 20px auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
     </div>
 
-    <!-- 【2. 签证板块】 -->
-    <div id="visa" class="section">
-        <h2>居留与签证办理</h2>
-        <p>
-            中国大陆居民赴日本旅游通常需要提前办理签证。目前最常见的签证类型包括单次旅游签证、
-            三年多次往返签证和五年多次往返签证。此外，日本近年来逐步推广电子签证（eVISA），
-            使签证申请流程更加便捷。不同签证类型对应不同的申请条件、有效期和停留时间，
-            申请人应根据自身出行需求选择合适的签证类别。
-        </p>
+    <!-- 【2. 行前准备板块】 -->
+    <div id="prep" class="section">
+        <h2>🧳 行前准备、入境 Visit Japan Web (VJW) 申报与网络插头全攻略</h2>
+        <p>日本入境政策与出行准备非常注重细节，提前准备好以下项目可省去 1-2 小时的机场排队时间：</p>
 
-        <h3>1. 日本旅游签证类型概览</h3>
+        <h3>1. ✈️ 官方 Visit Japan Web (VJW) 入境电子申报全流程</h3>
+        <p>日本已全面推行电子化入境卡与海关申报（无需在飞机上手写纸质卡片）。</p>
+        <ul>
+            <li><strong>官方网址：</strong>访问 `https://vjw-lp.digital.go.jp/`（认准 `.go.jp` 官方域名，切勿相信第三方收费中介）。</li>
+            <li><strong>准备材料：</strong>护照原件、机票行程单（航班号）、日本第一晚入住酒店的名称、地址与电话。</li>
+            <li><strong>填报步骤：</strong>
+                <ol>
+                    <li>注册个人账号并登录，添加同行家人信息。</li>
+                    <li>登记入境行程：输入抵达日期、航空公司及航班号、日本居住地址（直接复制酒店英文/日文地址）。</li>
+                    <li>填写“外国人入境记录卡”（勾选入境目的：观光，输入停留天数，确认无犯罪记录）。</li>
+                    <li>填写“携带品/别送品申报”（申报是否携带超过 100 万日元现金、受限植物肉类或违禁物品）。</li>
+                    <li><strong>生成二维码：</strong>完成填报后系统会生成 <strong>入境与海关二合一 QR Code</strong>，建议提前**截图保存至手机相册**（机场 Wi-Fi 信号不稳定，截图可离线使用）。</li>
+                </ol>
+            </li>
+            <li><strong>机场通关：</strong>降落后直接走电子通道，在自助闸机前扫描护照 + 展示二维码即可 10 秒快速通关。</li>
+        </ul>
+        
+        <h3>2. 📶 境外上网 / SIM 卡 / eSIM 方案深度测评</h3>
+        <table>
+            <tr>
+                <th>方案类型</th>
+                <th>网络运营商</th>
+                <th>优势与特点</th>
+                <th>避坑与注意事项</th>
+            </tr>
+            <tr>
+                <td><strong>eSIM 电子卡（极力推荐）</strong></td>
+                <td>Softbank / Docomo 官方网络</td>
+                <td>无需掏出实体卡，扫码添加蜂窝网络，保留国内手机号接收验证码。</td>
+                <td>仅限 iPhone（中国大陆版 iPhone 无 eSIM 功能，港版/美版支持）或部分海外安卓机。</td>
+            </tr>
+            <tr>
+                <td><strong>实体原生流量卡</strong></td>
+                <td>Softbank / IIJmio / KDDI</td>
+                <td>纯日本本地 IP，速度极快（可高达 100Mbps），可顺畅登录日本本地 App。</td>
+                <td>买卡时认准“原生卡”，避免买到从香港/东南亚漫游中转的虚商卡（延迟高）。</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 【3. 7日黄金行程超详细路线与精准交通】 -->
+    <div id="route" class="section">
+        <h2>🗺️ 日本 7 日黄金路线精准规划（含具体地铁线路、出口与景点）</h2>
+        
+        <div class="lang-card">
+            <h3>🗓️ Day 1：落地东京 ➔ 浅草寺 ➔ 上野阿美横町居酒屋</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通指南</span> 降落成田机场 (NRT) T1/T2 ➔ 前往 B1 京成电铁柜台使用 Klook 兑换码获取 <strong>Keisei Skyliner (京成电铁)</strong> 车票 ➔ 搭乘 Skyliner 直达 <strong>京成上野站 (Keisei-Ueno Station)</strong>（耗时 36 分钟，单程 2570 日元），入住上野/浅草周边酒店。</li>
+                <li><span class="tag tag-blue">交通指南</span> 从上野站搭乘 **东京地下铁银座线 (Ginza Line G16)** 2 站直达 **浅草站 (Asakusa G19)** 1号出口。</li>
+                <li><span class="tag tag-green">打卡景点</span> <strong>浅草寺 (Sensoji Temple)</strong>：打卡巨大的“雷门”红灯笼与宝塔（门票免费，在本堂花费 100 日元摇签抽御守） ➔ 漫步浅草寺前的 **仲见世商店街**。</li>
+                <li><span class="tag tag-blue">交通指南</span> 从浅草乘银座线返回上野站，步行 3 分钟即达 **阿美横町 (Ameyoko)** 高架桥下居酒屋街区。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🗓️ Day 2：东京现代潮流（筑地场外市场 ➔ 银座 ➔ 涩谷天空 ➔ 新宿）</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通指南</span> 从上野搭乘 **都营地下铁大江户线 (Oedo Line E09)** 7 站到 **筑地市场站 (Tsukijishijo E18)** A1 出口 ➔ 步行 3 分钟到筑地场外市场。</li>
+                <li><span class="tag tag-blue">交通指南</span> 从银座站搭乘 **银座线 (G09 ➔ G01 涩谷站)** 出站 ➔ 打卡 **Shibuya Sky (涩谷天空展望台)**（预订 17:00 落日场，门票 2200 日元）。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🗓️ Day 3：新干线跨城 ➔ 京都古都（伏见稻荷大社 ➔ 鸭川）</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通指南</span> 东京站搭乘 **东海道新干线 Nozomi 号**（2 小时 15 分钟，指定席 14170 日元） ➔ 京都站换乘 **JR 奈良线** 2 站到 **伏见稻荷站**。爬到“三之峰”避开 90% 团客。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🗓️ Day 4：京都 ➔ 大阪（清水寺 ➔ 金阁寺 ➔ 心斋桥）</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通指南</span> **京都市营巴士 206/207 路** 到 **清水道** 登清水寺 ➔ 乘 **12 路巴士** 到金阁寺 ➔ **JR 京都线新快速** 29 分钟（570 日元）直达 **大阪站**。</li>
+            </ul>
+        </div>
+
+        <div class="lang-card">
+            <h3>🗓️ Day 5 & 6：大阪繁华吃喝 & 日本环球影城 (USJ)</h3>
+            <ul>
+                <li><span class="tag tag-blue">交通指南</span> JR 环状线 ➔ 西九条站换乘 JR 樱岛线直达 **环球城站 (Universal-City)**。提前在 App 抢任天堂整理券！</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 【4. 顶级名店推荐与退税大解密板块】 -->
+    <div id="food" class="section">
+        <h2>🍣 Tabelog 顶级名店推荐清单、用餐礼仪与免税退税大解密</h2>
+
+        <h3>1. 🏆 精选日本顶级必吃名店推荐（含具体店铺名称、地址与精准预算）</h3>
+        
+        <div class="shop-card">
+            <h4>🥩 【和牛烧肉捡漏】叙叙苑 游玄亭 / 心斋桥店 (Jojoen Yugentei)</h4>
+            <p><strong>推荐理由：</strong>日本最知名的高级烧肉连锁！晚市人均 800-1200 RMB，但**午市套餐 (11:00-15:00) 仅需 3800-4500 日元（约 180-220 RMB）**，即可享受黑毛和牛、烤虾、泡菜小菜拼盘、白米饭、汤品与甜点饮料全套！</p>
+            <p><strong>地址：</strong>大阪市中央区心斋桥筋 1-10-11（心斋桥站 2号出口步行 2 分钟）</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍢 【平价炭火串烧】鸟贵族 (Torikizoku 上野店 / 新宿店 / 心斋桥店)</h4>
+            <p><strong>推荐理由：</strong>全日本覆盖的平价连锁居酒屋，全场所有菜品与啤酒**统一单价 360 日元/盘（约 18 RMB）**！桌上配有中文 iPad 自由点餐。</p>
+            <p><strong>必点推荐：</strong>贵族烧大葱鸡肉串（盐味/酱酱）、贵族釜饭（现煲鸡肉米饭）、冰镇生啤酒。</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍜 【日式沾面经典】面屋武藏 新宿本店 (Menya Musashi)</h4>
+            <p><strong>推荐理由：</strong>Tabelog 3.65 高分沾面神店！浓郁豚骨鱼介高汤搭配弹牙粗面与超厚切炙烧叉烧。</p>
+            <p><strong>预算与点餐：</strong>人均 1200 - 1500 日元（约 60-75 RMB），店门口使用食券机 (券売機) 投币买票，将小票交给师傅。</p>
+            <p><strong>地址：</strong>东京都新宿区西新宿 7-2-6（新宿站西口步行 4 分钟）</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍡 【浅草老字号小吃】木村家本店 & 浅草メンチ</h4>
+            <p><strong>木村家本店：</strong>浅草最古老的人形烧店，招牌红豆馅人形烧（500日元/包）。</p>
+            <p><strong>浅草メンチ：</strong>黑猪肉炸肉饼（350日元/个），外皮酥脆多汁，咬开满满肉汁。</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍵 【京都宇治抹茶名店】中村藤吉 京都站店 (Nakamura Tokichi)</h4>
+            <p><strong>推荐理由：</strong>宇治百年抹茶老号，位于京都站 JR 伊势丹百货 3 楼。必点“生抹茶竹筒冰淇淋果冻套餐”（1400 日元）。</p>
+        </div>
+
+        <div class="shop-card">
+            <h4>🍙 【筑地爆款海鲜饭团】丸丰 (Marutoyo 筑地场外市场)</h4>
+            <p><strong>推荐理由：</strong>每天清晨排长队！现包超大拳头海鲜饭团，包裹厚切三文鱼与明太子（单价 300 - 450 日元/个）。</p>
+        </div>
+
+        <h3>2. 🛍️ 2026 最新电子化免税 (Tax-Free) 规则与海关避坑</h3>
+        <ul>
+            <li><strong>免税门槛：</strong>在贴有 <strong>Tax-Free</strong> 标志的同一店铺，单日消费满 <strong>5000 日元（不含税）</strong> 即可享受 10% 消费税减免。</li>
+            <li><strong>电子化核销：</strong>结账时直接出示<strong>护照原件（非复印件）</strong>，店家扫描护照后，购物记录会实时上传至日本国税厅数据库，**无需在护照上钉纸质小票**。</li>
+        </ul>
+    </div>
+
+    <!-- 【5. 平价住宿与穷游精选板块】 -->
+    <div id="hotel" class="section">
+        <h2>🏨 日本平价住宿与穷游超值精选（百元级 - 300元级）</h2>
+        <p>专门为您筛选了适合学生党、独行背包客与预算有限玩家的平价住宿：</p>
+
+        <h3>1. 🎒 极实惠：平价连锁商务酒店（日均 250 - 450 RMB，包含免费早餐）</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">5,500 - 9,000 日元/晚 (约 270-450 RMB)</span>
+            <h4>🏢 【东京位置之王】 APA 酒店 上野站前 (APA Hotel Ueno Ekimae)</h4>
+            <p><span class="tag tag-green">平价性价比</span> <span class="tag tag-blue">上野站步行 3 分钟</span></p>
+            <p><strong>位置交通：</strong>JR 上野站 / 京成上野站步行 3 分钟（直达机场 Skyliner）。</p>
+            <p><strong>推荐特色：</strong>房间虽小但五脏俱全，干净极速 Wi-Fi，大屏液晶电视。楼下就是便利店与上野公园，离阿美横町夜市仅 200 米，性价比爆棚。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">6,000 - 9,500 日元/晚 (约 300-480 RMB)</span>
+            <h4>🥐 【免费无限早餐】 大阪 Super Hotel 日本桥 (Super Hotel Namba Nihonbashi)</h4>
+            <p><span class="tag tag-green">免费早餐</span> <span class="tag tag-blue">大阪难波/日本桥</span></p>
+            <p><strong>位置交通：</strong>Osaka Metro 日本桥站 5号出口直达，步行 5 分钟到道顿堀与黑门市场。</p>
+            <p><strong>推荐特色：</strong>**免费提供丰盛的现烤欧包、日式咖喱饭与有机蔬菜自助早餐**！大堂可自主挑选软硬不同的枕头，男女分时段免费泡温泉汤池。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">5,200 - 8,500 日元/晚 (约 260-420 RMB)</span>
+            <h4>🍙 【京都平价连锁】 东横 Inn 京都四条大宫 (Toyoko Inn Kyoto Shijo Omiya)</h4>
+            <p><span class="tag tag-green">免费日式早餐</span> <span class="tag tag-blue">京都四条大宫</span></p>
+            <p><strong>位置交通：</strong>阪急京都线四条大宫站 Exit 2 步行 1 分钟，公交车直达清水寺与金阁寺。</p>
+            <p><strong>推荐特色：</strong>全日本老牌平价连锁！**房费自带免费日式手工饭团、酱汤与小菜早餐**，房间极其标准干净，办会员卡还打折。</p>
+        </div>
+
+        <h3>2. 🚀 超穷游：设计感胶囊旅馆 & 独立网咖包厢过夜（日均 100 - 220 RMB）</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">2,800 - 4,200 日元/过夜 (约 140-210 RMB)</span>
+            <h4>💻 【日本极致穷游神器】 快活 CLUB 秋叶原店 (Kaikatsu Club - 独立包间网咖)</h4>
+            <p><span class="tag tag-purple">免费饮料冰淇淋</span> <span class="tag tag-blue">秋叶原/全日本连锁</span></p>
+            <p><strong>位置交通：</strong>JR 秋叶原站电气街口步行 2 分钟。</p>
+            <p><strong>推荐特色：</strong>日本打工族与背包客最爱的过夜神器！带锁独立软垫包厢，**24小时无限量免费喝咖啡可乐、无限量吃软冰淇淋、免费使用淋浴间与漫画**！8小时过夜套餐仅需约 150 RMB！</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">3,200 - 4,800 日元/床位 (约 160-240 RMB)</span>
+            <h4>🎨 【京都亚洲最佳青旅】 Piece Hostel Sanjo (三条皮斯青年旅舍)</h4>
+            <p><span class="tag tag-green">免费丰盛早餐</span> <span class="tag tag-blue">京都乌丸三条</span></p>
+            <p><strong>位置交通：</strong>地下铁乌丸御池站步行 5 分钟，四条河原町步行 10 分钟。</p>
+            <p><strong>推荐特色：</strong>荣获 Hostelworld 亚洲最佳青旅！北欧木质工业风，提供免费丰盛的自助茶点与茶米饭早餐，公共 Bar 氛围极好，床位带私密拉帘与独立充电头。</p>
+        </div>
+
+        <div class="hotel-card">
+            <span class="price-badge">3,500 - 5,500 日元/晚 (约 175-280 RMB)</span>
+            <h4>🚀 【极简太空舱胶囊】 9h Nine Hours 赤坂 / 人形町 (Nine Hours Capsule)</h4>
+            <p><span class="tag tag-blue">太空舱</span> <span class="tag tag-purple">独立淋浴</span></p>
+            <p><strong>位置交通：</strong>东京赤坂站 / 人形町站步行 2 分钟。</p>
+            <p><strong>推荐特色：</strong>极致未来科技感的睡眠舱，男女严格分层，锁淋浴间洁净度爆表，独行客首选。</p>
+        </div>
+
+        <h3>3. 🏡 多人/家庭摊薄平价公寓（人均 150 - 250 RMB）</h3>
+
+        <div class="hotel-card">
+            <span class="price-badge">4人入住人均 5,500 - 7,500 日元/晚 (人均约 270 RMB)</span>
+            <h4>🍳 【带厨房洗衣机公寓】 Osaka Mimaru 难波北 (Mimaru Osaka Namba North)</h4>
+            <p><span class="tag tag-green">家庭/多人平摊</span> <span class="tag tag-blue">大阪难波</span></p>
+            <p><strong>位置交通：</strong>Osaka Metro 难波站步行 6 分钟。</p>
+            <p><strong>推荐特色：</strong>套房内配有独立厨房、微波炉、大冰箱与独立洗衣机，可以去黑门市场买和牛海鲜回房间自己做，4人同行平摊下来价格极其划算！</p>
+        </div>
+    </div>
+
+    <!-- 【6. 居留与签证板块】 -->
+    <div id="visa" class="section">
+        <h2>🛂 日本签证办理与入境居留全攻略</h2>
+        <p>中国大陆居民赴日本旅游需提前办理个人观光签证。目前已全面实行电子签证 (eVISA)，所有签证均须通过日本驻华使领馆指定的送签旅行社递交。</p>
+
+        <h3>1. 📄 常见日本旅游签证类型与申请条件</h3>
         <table>
             <tr>
                 <th>签证类型</th>
-                <th>有效期</th>
-                <th>入境次数</th>
-                <th>单次停留时间</th>
+                <th>最长停留</th>
+                <th>核心申请条件（二选一/多选一）</th>
+                <th>适合人群</th>
             </tr>
             <tr>
-                <td>单次旅游签证</td>
-                <td>约3个月</td>
-                <td>1次</td>
-                <td>15天</td>
+                <td><strong>单次观光签证</strong></td>
+                <td>15 天</td>
+                <td>① 教育部直属高校/双一流在校生或毕业 3 年内（学信网凭《教育部学籍/学历在线验证报告》免资产）<br>② 近1年完税证明或年收入 10 万以上银行流水</td>
+                <td>大学生、刚毕业新手、首次赴日玩家</td>
             </tr>
             <tr>
-                <td>三年多次往返签证</td>
-                <td>3年</td>
-                <td>多次</td>
-                <td>通常30天</td>
+                <td><strong>三年多次往返签证</strong></td>
+                <td>每次 30 天<br>(每年≤180天)</td>
+                <td>① 近 1 年年收入 20 万以上或完税证明<br>② 近 3 年内有 2 次以个人观光单次签证赴日记录（免资产证明通道）</td>
+                <td>经常赴日度假、高频出差客群</td>
             </tr>
             <tr>
-                <td>五年多次往返签证</td>
-                <td>5年</td>
-                <td>多次</td>
-                <td>最长90天</td>
+                <td><strong>五年多次往返签证</strong></td>
+                <td>每次 90 天<br>(每年≤180天)</td>
+                <td>近 1 年完税证明或年收入 50 万以上（可同时为直系亲属办理副签）</td>
+                <td>家庭出行、深度游与多城慢游者</td>
             </tr>
         </table>
 
-        <h3>2. 单次旅游签证</h3>
-        <p>
-            单次旅游签证是绝大多数首次赴日游客选择的签证类型，
-            适用于观光、自由行、家庭旅行及短期休闲度假。
-        </p>
-        <h4>基本申请材料</h4>
+        <h3>2. 📲 电子签证 (eVISA) 出示与海关注意事项</h3>
         <ul>
-            <li>护照原件（有效期6个月以上）</li>
-            <li>签证申请表</li>
-            <li>近期白底彩色证件照</li>
-            <li>身份证复印件</li>
-            <li>户口本复印件</li>
-            <li>在职证明或学生证明</li>
-            <li>银行流水或其他财力证明</li>
-            <li>行程计划书（部分旅行社要求）</li>
-            <li>酒店及机票预订单（部分旅行社要求）</li>
-        </ul>
-        <p>
-            一般情况下，单次签证审核周期约为5至10个工作日，
-            旅游旺季可能需要更长时间。
-        </p>
-
-        <h3>3. 单次签证简化办理</h3>
-        <p>
-            为方便部分申请人赴日旅游，许多旅行社提供简化办理方案。
-            符合条件的申请人可减少甚至免除部分财力证明材料。
-        </p>
-        <h4>常见适用人群</h4>
-        <ul>
-            <li>全日制本科及以上在校大学生</li>
-            <li>毕业三年内的本科毕业生</li>
-            <li>拥有发达国家签证记录 of 申请人</li>
-            <li>拥有良好出境记录的申请人</li>
-            <li>部分公务员、教师、医生等职业人员</li>
-        </ul>
-        <p>
-            具体简化政策因领区 and 旅行社而异，申请前应咨询最新要求。
-        </p>
-
-        <h3>4. 大学生赴日签证</h3>
-        <p>
-            大学生赴日旅游通常申请普通旅游签证，而非单独的“学生旅游签证”。
-            由于学生群体风险较低，许多旅行社允许其通过简化材料方式申请。
-        </p>
-        <h4>常见材料</h4>
-        <ul>
-            <li>护照原件</li>
-            <li>身份证复印件</li>
-            <li>学生证</li>
-            <li>学信网学籍在线验证报告</li>
-            <li>在读证明（部分学校提供）</li>
-        </ul>
-        <p>
-            许多本科及以上在校学生无需提供复杂的财力证明即可完成申请。
-        </p>
-
-        <h3>5. 三年多次往返签证</h3>
-        <p>
-            三年多次签证适合经常赴日旅游、商务出行或有长期赴日计划的人群。
-            获得签证后，在有效期内可多次入境日本，无需重复申请签证。
-        </p>
-        <h4>主要特点</h4>
-        <ul>
-            <li>有效期3年</li>
-            <li>多次往返</li>
-            <li>单次停留通常30天</li>
-            <li>节省重复申请时间和费用</li>
-        </ul>
-        <h4>常见申请条件</h4>
-        <ul>
-            <li>稳定工作和收入来源</li>
-            <li>较好的银行流水记录</li>
-            <li>纳税或社保缴纳记录</li>
-            <li>良好的出境历史</li>
-        </ul>
-
-        <h3>6. 五年多次往返签证</h3>
-        <p>
-            五年多次签证是旅游签证中门槛最高的类别，
-            主要面向高收入人士及经常往返日本的旅客。
-        </p>
-        <h4>主要特点</h4>
-        <ul>
-            <li>有效期5年</li>
-            <li>多次往返</li>
-            <li>单次最长停留90天</li>
-            <li>无需频繁重新申请签证</li>
-        </ul>
-        <h4>常见申请条件</h4>
-        <ul>
-            <li>较高收入水平</li>
-            <li>较高额度银行存款</li>
-            <li>稳定纳税记录</li>
-            <li>优质信用和出境记录</li>
-        </ul>
-
-        <h3>7. 香港居民赴日政策</h3>
-        <p>
-            香港特别行政区居民适用与中国大陆居民不同的赴日入境制度。
-            持香港特别行政区护照人士通常享有免签，
-            具体停留期限及入境要求应以日本驻香港总领事馆最新规定为准。
-        </p>
-
-        <h3>8. 澳门居民赴日政策</h3>
-        <p>
-            澳门特别行政区居民同样适用独立的赴日入境政策。
-            持澳门特别行政区护照人士通常享有免签，
-            具体要求请参考日本驻澳门总领事馆公布的信息。
-        </p>
-
-        <h3>9. eVISA电子签证</h3>
-        <p>
-            日本近年来逐步推广电子签证（eVISA）制度。
-            获批后无需传统纸质贴签，申请人可在线完成大部分流程，
-            为赴日旅游提供了更高的便利性。
-        </p>
-        <ul>
-            <li>在线提交申请材料</li>
-            <li>电子形式签发签证</li>
-            <li>无需传统贴签</li>
-            <li>提高申请效率</li>
-        </ul>
-
-        <h3>10. 办理流程</h3>
-        <ol>
-            <li>确认签证类型</li>
-            <li>选择有资质的代办旅行社</li>
-            <li>准备申请材料</li>
-            <li>递交申请</li>
-            <li>使领馆审核</li>
-            <li>签证签发</li>
-            <li>领取签证并确认信息</li>
-            <li>安排行程并赴日旅行</li>
-        </ol>
-
-        <h3>11. 办理时间与费用</h3>
-        <ul>
-            <li>普通办理：约5-10个工作日</li>
-            <li>旅游旺季：约10-20个工作日</li>
-            <li>签证费用：约200-800元人民币（因地区和旅行社而异）</li>
-            <li>加急服务需额外支付费用</li>
-        </ul>
-
-        <h3>12. 常见拒签原因</h3>
-        <ul>
-            <li>提供虚假材料或伪造证明</li>
-            <li>财力证明不足</li>
-            <li>出境记录存在问题</li>
-            <li>申请信息前后不一致</li>
-            <li>行程安排明显不合理</li>
-            <li>曾有非法滞留或签证违规记录</li>
-        </ul>
-        <p>
-            建议申请人如实提交材料，提前规划行程，并至少在出发前一个月开始准备签证申请，
-            以避免因审核延迟影响出行安排。
-        </p>
-    </div>
-
-    <!-- 【3. 住宿板块】 -->
-    <div id="hotel" class="section">
-        <h2>日本三大城市住宿推荐与高性价比酒店</h2>
-        <p>面向第一次前往日本、预算有限（单人床位150-300元/晚，双人独立房间350-600元/晚）的自由行游客。以下精选的住宿全部卡死在“临近核心地铁站”这一硬性条件下，既能省下大笔住宿费，又绝不在交通便利度上妥协。</p>
-        
-        <hr>
-
-        <!-- ================= 东京篇 ================= -->
-        <h3>🗼 东京篇：高性价比住宿选区</h3>
-        <p>第一次去东京，推荐住在<strong>上野/浅草</strong>（成田机场电铁直达、极具性价比与老江户市井气）或<strong>新宿周边</strong>（交通枢纽、夜生活丰富）。</p>
-        
-        <h4>【极致省钱：高品质青年旅舍 / 胶囊旅馆】（预算：150 - 300 RMB / 晚）</h4>
-        <ul>
-            <li>
-                <strong>上野/浅草：东京书香入梦旅馆 (Book and Bed Tokyo Asakusa)</strong>
-                <ul>
-                    <li><strong>特色：</strong>“可以住的书店”。床位嵌入在巨大的木质书架里，充满文艺感，每个床位均有独立电源、阅读灯和隐私窗帘。</li>
-                    <li><strong>周边/交通：</strong>浅草站步行 3 分钟。出门就是浅草寺雷门，去成田机场有直达电铁。</li>
-                    <li><strong>参考价格：</strong>约 200 - 350 RMB / 床位</li>
-                </ul>
-            </li>
-            <li>
-                <strong>日本桥/马喰町：CITAN Hostel</strong>
-                <ul>
-                    <li><strong>特色：</strong>东京设计感天花板的网红青旅。一楼是精品咖啡厅，地下室是极有氛围的黑胶唱片酒吧，寝具和洗漱空间极其干净现代化。</li>
-                    <li><strong>周边/交通：</strong>马喰横山站/东日本桥站步行 2-3 分钟。靠近秋叶原、银座，晚上周边非常安静。</li>
-                    <li><strong>参考价格：</strong>约 180 - 300 RMB / 床位</li>
-                </ul>
-            </li>
-            <li>
-                <strong>新宿/涩谷周边：9h nine hours (九小时胶囊旅馆 - 新宿北)</strong>
-                <ul>
-                    <li><strong>特色：</strong>极简科技感太空舱设计，严格的男女分层。洗手间和淋浴间数量充足且极度整洁，适合单人特种兵旅游。</li>
-                    <li><strong>周边/交通：</strong>新大久保站步行 2 分钟（离新宿站仅一站路）。周边是韩国街，有无数便宜好吃的平价居酒屋。</li>
-                    <li><strong>参考价格：</strong>约 220 - 350 RMB / 舱位</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h4>【独立房间：高性价比连锁快捷酒店】（预算：350 - 600 RMB / 晚）</h4>
-        <ul>
-            <li>
-                <strong>全东京覆盖：APA 酒店连锁 (APA Hotel)</strong>
-                <ul>
-                    <li><strong>特色：</strong>日本快捷酒店之王。最大的优势是位置无敌，永远在地铁站出口步行 3 分钟以内。房间麻雀虽小五脏俱全，床底可以塞下大行李箱。（类似平价连锁还有<strong>东横INN</strong>，还免费送日式早饭）。</li>
-                    <li><strong>推荐分店：</strong>APA酒店 - 京成上野站前、APA酒店 - 浅草雷门</li>
-                    <li><strong>参考价格：</strong>约 380 - 600 RMB / 房间</li>
-                </ul>
-            </li>
-            <li>
-                <strong>上野/秋叶原：相铁FREESA INN (Sotetsu Fresa Inn Ueno-Okachimachi)</strong>
-                <ul>
-                    <li><strong>特色：</strong>智能与女性友好。全自助办理入住，大堂有免费的自助小样区，可以无限量拿洗面奶、卸妆油、面膜、入浴剂等（直接省去带洗漱用品的麻烦）。</li>
-                    <li><strong>周边/交通：</strong>上野御徒町站步行 1 分钟。楼下就是著名的多庆屋（平价批发商场）和阿美横町小吃街。</li>
-                    <li><strong>参考价格：</strong>约 400 - 650 RMB / 房间</li>
-                </ul>
-            </li>
-            <li>
-                <strong>浅草：浅草超级酒店 (Super Hotel Asakusa)</strong>
-                <ul>
-                    <li><strong>特色：</strong>高性价比神店。大堂有一整面墙的不同材质枕头供免费挑选，部分分店还自带<strong>免费的天然温泉/大浴场</strong>，走完两万步后免费泡汤简直是救命。傍晚还提供免费的限时酒水畅饮。</li>
-                    <li><strong>周边/交通：</strong>浅草站步行 5 分钟，紧邻浅草寺，周边有很多平价面馆、吉野家。</li>
-                    <li><strong>参考价格：</strong>约 350 - 550 RMB / 房间</li>
-                </ul>
-            </li>
-        </ul>
-
-        <hr>
-
-        <!-- ================= 大阪篇 ================= -->
-        <h3>🐙 大阪篇：高性价比住宿选区</h3>
-        <p>第一次去大阪，最推荐住在<strong>难波/心斋桥</strong>（吃喝玩乐宇宙中心）或<strong>梅田/天王寺</strong>（重要交通枢纽，方便去京都/奈良/环球影城）。</p>
-        
-        <h4>【极致省钱：高品质青年旅舍 / 胶囊旅馆】（预算：150 - 300 RMB / 晚）</h4>
-        <ul>
-            <li>
-                <strong>心斋桥/难波: 难波周边高评价青旅 (如 The Dotonbori Hotel 概念分店等)</strong>
-                <ul>
-                    <li><strong>特色：</strong>如果追求极佳的位置，难波周边的青旅是首选。不仅公共区域极其宽敞，通常还配备免费的拉面夜宵、冰淇淋或者按摩椅服务，对年轻游客非常大方。</li>
-                    <li><strong>周边/交通：</strong>难波站/心斋桥站步行 3-5 分钟。下楼就是道顿堀跑跑人螃蟹道乐，买完东西抬脚就能回店休息。</li>
-                    <li><strong>参考价格：</strong>约 150 - 260 RMB / 床位</li>
-                </ul>
-            </li>
-            <li>
-                <strong>心斋桥：J-SHIP大阪难波胶囊旅馆 (Capsule Hotel J-SHIP Osaka Namba)</strong>
-                <ul>
-                    <li><strong>特色：</strong>现代日式和风胶囊。打破了传统胶囊的压抑感，内部带有非常漂亮的小型日式庭院和超大公共浴场。男女彻底分流，安全性与舒适度极高。</li>
-                    <li><strong>周边/交通：</strong>JR难波站步行 1 分钟。去OCAT（机场大巴总站）极其方便。</li>
-                    <li><strong>参考价格：</strong>约 180 - 280 RMB / 舱位</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h4>【独立房间：高性价比连锁快捷酒店】（预算：350 - 600 RMB / 晚）</h4>
-        <ul>
-            <li>
-                <strong>通天阁/新世界：新今宫周边平价快捷酒店 (如酒店WBF或深大路酒店)</strong>
-                <ul>
-                    <li><strong>特色：</strong>新今宫和新世界区域是大阪著名的平价住宿高地，如果预算吃紧，这里的独立快捷酒店房间价格甚至能压到200-300元人民币。星野旗下的平价轻奢线 <strong>OMO7 大阪</strong> 也坐落在此，淡季常有捡漏特价。</li>
-                    <li><strong>周边/交通：</strong>新今宫站/动物园前站步行 1 分钟。直达关西机场，去通天阁吃炸串极近。</li>
-                    <li><strong>参考价格：</strong>约 300 - 550 RMB / 房间</li>
-                </ul>
-            </li>
-            <li>
-                <strong>本町/心斋桥北：相铁FREESA INN - 大阪心斋桥 (Sotetsu Fresa Inn Osaka Shinsaibashi)</strong>
-                <ul>
-                    <li><strong>特色：</strong>相铁保持了一贯的高水准自助服务，大堂的免费护肤品小样管够。位置巧妙地避开了心斋桥最嘈杂的中心区，闹中取静，房间全新且设施现代化。</li>
-                    <li><strong>周边/交通：</strong>心斋桥站/长堀桥站步行 3 分钟。步行去心斋桥筋商店街只要几分钟。</li>
-                    <li><strong>参考价格：</strong>约 400 - 600 RMB / 房间</li>
-                </ul>
-            </li>
-        </ul>
-
-        <hr>
-
-        <!-- ================= 京都篇 ================= -->
-        <h3>⛩️ 京都篇：高性价比住宿选区</h3>
-        <p>京都的景点分布较散，第一次去强烈推荐住在<strong>京都站附近</strong>（所有巴士、新干线、JR的始发站，绝不会迷路）或<strong>四条河原町/三条</strong>（京都最繁华的商圈，富有江户风情）。</p>
-        
-        <h4>【极致省钱：高品质青年旅舍 / 胶囊旅馆】（预算：150 - 300 RMB / 晚）</h4>
-        <ul>
-            <li>
-                <strong>四条河原町：The Millennials Kyoto (京都千禧一代胶囊旅馆)</strong>
-                <ul>
-                    <li><strong>特色：</strong>全日本科技感最强的网红青旅。用配备的 iPod 控制整个胶囊的床垫角度（可以变成沙发）、灯光和通风。晚上公共区有<strong>免费啤酒畅饮 (Free Beer Hour)</strong>，社交氛围极好。</li>
-                    <li><strong>周边/交通：</strong>京都市役所前站/三条站步行 3 分钟。下楼就是河原町商业街，步行可到达鸭川和祇园。</li>
-                    <li><strong>参考价格：</strong>约 220 - 350 RMB / 舱位</li>
-                </ul>
-            </li>
-            <li>
-                <strong>京都站周边：Piece Hostel Kyoto (京都皮斯青旅)</strong>
-                <ul>
-                    <li><strong>特色：</strong>常年蝉联亚洲最佳青旅榜单。设计走北欧极简风，公共厨房 and 庭院极美。每天早上<strong>免费提供超丰盛的早餐</strong>（面包、土豆沙拉、泡菜、汤），能省下一大笔饭钱。</li>
-                    <li><strong>周边/交通：</strong>京都站八条口步行 3 分钟。坐JR去伏见稻荷大社或坐巴士去清水寺都极其方便。</li>
-                    <li><strong>参考价格：</strong>约 180 - 280 RMB / 床位</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h4>【独立房间：高性价比连锁快捷酒店】（预算：350 - 600 RMB / 晚')</h4>
-        <ul>
-            <li>
-                <strong>四条乌丸：京都四条乌丸超级酒店 (Super Hotel Kyoto Karasuma Gojo)</strong>
-                <ul>
-                    <li><strong>特色：</strong>延续了 Super Hotel 的高性价比神话。不仅有免费的有机蔬菜早餐，这里还自带<strong>天然温泉大浴场</strong>。在京都暴走一天神社碎石路后，泡个汤能瞬间回血。</li>
-                    <li><strong>周边/交通：</strong>五条站出口即达 / 四条站步行 5 分钟。</li>
-                    <li><strong>参考价格：</strong>约 380 - 580 RMB / 房间</li>
-                </ul>
-            </li>
-            <li>
-                <strong>京都站前：东横INN - 京都站前 (Toyoko Inn Kyoto Ekimae)</strong>
-                <ul>
-                    <li><strong>特色：</strong>出名的“安全牌”。房间标准的日式商务配置，扎实干净。最大的卖点就是免费提供日式饭团酱汤早餐，且价格非常稳定，即使在京都红叶季/樱花季涨幅也相对良心。</li>
-                    <li><strong>周边/交通：</strong>京都站中央口步行 5 分钟。一出门就是京都站巨大的巴士总站。</li>
-                    <li><strong>参考价格：</strong>约 350 - 550 RMB / 房间</li>
-                </ul>
-            </li>
+            <li><strong>电子签验证：</strong>入境时须在手机上网状态下登录官方验证页面出示 **“发签通知书 (Notice of Visa Issuance)”**，**切勿使用截图或纸质打印件**，机场放行时需现场刷新。</li>
+            <li><strong>海关现金限制：</strong>入境携带现金或票据超过 100 万日元必须向海关申报；建议人均准备 3-10 万日元现金备用。</li>
+            <li><strong>动植物检疫：</strong>生肉制品（含猪肉干、牛肉干、香肠）、水果、植物种子绝对禁止携带入境，违者将被没收并面临最高 300 万日元罚款。</li>
         </ul>
     </div>
 
-    <!-- 【4. 交通板块】 -->
+    <!-- 【7. 交通与西瓜卡板块】 -->
     <div id="traffic" class="section">
-        <h2>交通保姆级指南（机场、市区与跨城市通勤）</h2>
-        <p>日本交通看似复杂，但只要理清“机场大动脉”、“市区刷卡”和“跨城市新干线”三步，就能轻松闭眼走。以下是超详细的落地实操指南：</p>
+        <h2>🚆 日本全域交通、手机 IC 卡绑定与新干线避坑全技巧</h2>
 
-        <hr>
+        <h3>1. 📱 手机 Suica / PASMO / ICOCA 卡绑定与充值</h3>
+        <div class="shop-card" style="border-left-color: #0284c7; background: #f0f9ff;">
+            <h4>💳 iPhone / Apple Watch 快捷交通卡绑定方法</h4>
+            <ul>
+                <li><strong>绑定步骤：</strong>打开 iPhone “钱包 (Wallet)”App ➔ 点击右上角 ＋ ➔ 选择“交通卡” ➔ 搜索输入 `Suica` 或 `PASMO` ➔ 选择充值金额（起充 1000 日元，支持银联卡/Visa/Mastercard 支付）。</li>
+                <li><strong>黑科技优势：</strong>无需开启屏幕或面容识别，靠近地下铁闸机感应区即可 0.1 秒秒过；手机掉电断电后 5 小时内仍保留备用电量可刷卡进出站！</li>
+                <li><strong>实体卡现状：</strong>由于芯片短缺，日本实体普通 Suica/PASMO 已暂停销售，短期游客可在机场购买 28 天免押金的 Welcome Suica。</li>
+            </ul>
+        </div>
 
-        <h3>一、 机场如何快速前往市区？</h3>
-        <p>根据你的降落机场，选择最省时或最省钱的交通工具：</p>
+        <h3>2. 🎫 常用交通周游券与优惠票券</h3>
+        <table>
+            <tr>
+                <th>票券名称</th>
+                <th>参考价格</th>
+                <th>适用范围与使用建议</th>
+            </tr>
+            <tr>
+                <td><strong>东京 Subway Ticket (24/48/72小时)</strong></td>
+                <td>800 / 1200 / 1500 日元</td>
+                <td>无限次乘坐东京地下铁（Metro 9条线 + 都营 4条线）。日均乘车 3 次以上直接省下一大半车费！</td>
+            </tr>
+            <tr>
+                <td><strong>关西周游卡 (Kansai Thru Pass) / ICOCA</strong></td>
+                <td>视天数而定</td>
+                <td>覆盖大阪、京都、奈良的私铁（阪急、京阪、近铁）与地铁，适合关西多城穿梭。</td>
+            </tr>
+            <tr>
+                <td><strong>JR Pass 全国铁路周游券</strong></td>
+                <td>50,000 日元起 (7日)</td>
+                <td>因 2023 年价格大涨，若仅走“东京-京都-大阪”单程新干线，**单独买票比买全国 Pass 更划算**！</td>
+            </tr>
+        </table>
+
+        <h3>3. 🚄 东海道/山阳新干线预约与特大行李新规</h3>
         <ul>
-            <li>
-                <strong>如果你降落【东京成田机场 (NRT)】：</strong>
-                <ul>
-                    <li><strong>最快方案：</strong>搭乘 <strong>京成电铁 Skyliner</strong>。只需 36 分钟直达【上野】和【日暮里】，单程约 2570 日元，适合住在上野、浅草或转乘山手线的游客。</li>
-                    <li><strong>直达大站方案：</strong>搭乘 <strong>JR 成田特快 (NEX)</strong>。直达【东京站】、【新宿】、【涩谷】，买往返套票（特惠约 5000 日元）最划算，适合行李多、不想在火车站里疯狂换乘的人。</li>
-                </ul>
-            </li>
-            <li>
-                <strong>如果你降落【东京羽田机场 (HND)】：</strong>
-                <ul>
-                    <li>羽田离市区极近。搭乘 <strong>东京单轨电车 (Monorail)</strong> 13 分钟直达【滨松町站】（可换乘山手线）；或者搭乘 <strong>京急电铁</strong> 直达【品川站】或【浅草】。车费仅需 500 日元左右。</li>
-                </ul>
-            </li>
-            <li>
-                <strong>如果你降落【关西国际机场 (KIX) —— 大阪/京都】：</strong>
-                <ul>
-                    <li><strong>去大阪（难波/心斋桥）：</strong>搭乘 <strong>南海电铁 (Nankai)</strong> 特急 Rapi:t，38 分钟直达难波，单程约 1450 日元。</li>
-                    <li><strong>去京都/新大阪：</strong>搭乘 <strong>JR 特急 Haruka</strong>（Hello Kitty 联名列车）。到大阪梅田/新大阪约 50 分钟，<strong>直达京都只需 80 分钟</strong>（单程约 2200 日元，建议提前在 Klook 等平台买好电子票）。</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h3>二、 市区内通勤与支付利器</h3>
-        <p>在东京、大阪、京都等市区内坐地铁、公交，记住以下规则：</p>
-        <ul>
-            <li>
-                <strong>手机数字交通卡（强烈推荐）：</strong>
-                <ul>
-                    <li><strong>iPhone 用户：</strong>直接打开手机自带的“钱包 (Wallet)”App -> 点击右上角“+”号 -> 选择“交通卡” -> 搜索 <strong>Suica (西瓜卡)</strong> 或 <strong>PASMO</strong>。直接绑定手机里的中国银联卡或 Visa 充值，充多少用多少。</li>
-                    <li><strong>使用方法：</strong>坐地铁、坐公交、甚至在便利店（7-11/全家）买零食时，<strong>无需解锁手机，直接把手机顶端靠近闸机感应区</strong>即可“哔”过，支持全日本通用。</li>
-                    <li><em>注：安卓手机因锁区问题，建议到日本后在机场/地铁站购买实体西瓜卡，或直接在自助机上买单程票。</em></li>
-                </ul>
-            </li>
-            <li>
-                <strong>导航软件：</strong>直接用 <strong>Google Maps (谷歌地图)</strong>。在搜索路线时，它会精确到“在几号站台上下车”、“坐哪条线（如山手线/御堂筋线）”、“车费多少钱”以及“车厢靠近哪个出口最近”，堪校保姆级向导。</li>
-        </ul>
-
-        <h3>三、 如何跨城市移动？（东京 ↔ 名古屋 ↔ 京都 ↔ 大阪）</h3>
-        <p>在城市与城市之间大范围移动，主要依靠<strong>东海道新干线 (Shinkansen)</strong>，相当于日本的高铁：</p>
-        <ul>
-            <li>
-                <strong>速度与车型：</strong>新干线分为 <strong>Nozomi (希望号 - 最快，经停站最少)</strong>、Hikari (光号) 和 Kodama (回声号)。从东京到京都大约 2 小时 15 分钟，到大阪大约 2 小时 30 分钟。
-            </li>
-            <li>
-                <strong>如何买票与支付：</strong>
-                <ul>
-                    <li><strong>线下购买（最稳妥）：</strong>直接去各大火车站（如东京站、新宿站、新大阪站、京都站）的 <strong>“绿色窗口” (Midori-no-madoguchi)</strong> 或自助售票机购买。支持刷中国信用卡、Visa 或使用现金。</li>
-                    <li><strong>自由席 vs 指定席：</strong>买票时可以选择“指定席”（有固定座位，推荐拉大行李的人买）或“自由席”（便宜几百日元，去自由席车厢抢座，没座就要站着）。</li>
-                    <li><strong>关于大件行李：</strong>如果携带行李箱<strong>三边之和超过 160 厘米</strong>（通常是 28寸及以上的大箱子），在人工窗口买票时<strong>必须跟工作人员说需要预订“带大件行李放置处的座位”</strong>，这是免费的，但位置有限，不预约被查到会被罚款。</li>
-                </ul>
-            </li>
+            <li><strong>特大行李预约 (160cm-250cm)：</strong>随身携带长宽高三边之和在 160cm 至 250cm 之间的行李箱乘坐新干线，必须提前通过 SmartEX App 或车站售票机预约 **带特大荷物座席**（免费预约）；若未预约携带上车将被收取 1000 日元手续费并由乘务员指定放置位置。</li>
+            <li><strong>新干线车票购票：</strong>可通过 JR 车站“绿色窗口 (Midori-no-Madoguchi)”或自动售票机刷信用卡购买，也可提前在 Klook / SmartEX 预约电子票。</li>
         </ul>
     </div>
 
-<!-- 【5. 预算计算器】 -->
+    <!-- 【8. 预算计算器】 -->
     <div id="calculator" class="section">
-        <h2>💰 旅游预算计算器</h2>
+        <h2>💰 日本旅游预算智能计算器</h2>
         <div class="calc-box">
             <div class="calc-input">
                 <label>机票/往返总计：</label>
-                <input type="number" id="flight" value="0"> 元
+                <input type="number" id="flight" value="2000"> 元 (RMB)
             </div>
             <div class="calc-input">
                 <label>酒店住宿/每晚：</label>
-                <input type="number" id="hotelPrice" value="0"> 元 × 
-                <input type="number" id="hotelDays" value="1" style="width:60px;"> 晚
+                <input type="number" id="hotelPrice" value="6500"> 日元 (JPY) × 
+                <input type="number" id="hotelDays" value="6" style="width:60px;"> 晚
             </div>
             <div class="calc-input">
                 <label>每日餐饮/玩乐：</label>
-                <input type="number" id="food" value="300"> 元/天 × 
-                <input type="number" id="playDays" value="1" style="width:60px;"> 天
+                <input type="number" id="food" value="5000"> 日元 (JPY) × 
+                <input type="number" id="playDays" value="7" style="width:60px;"> 天
             </div>
-            <button onclick="calculateBudget()">一键计算总预算</button>
-            <h3 style="margin-top: 15px; color: #e63946;">预估总花费：<span id="totalResult">0</span> 元</h3>
+            <div class="calc-input">
+                <label>日元参考汇率：</label>
+                <input type="number" id="exchangeRate" value="21.5" style="width:80px;" step="0.5"> (100日元 ≈ ? 人民币)
+            </div>
+            <button onclick="calculateBudget()">一键计算总预算 (RMB)</button>
+            <h3 style="margin-top: 15px; color: var(--primary);">预估折合总花费：<span id="totalResult">0</span> 元人民币</h3>
         </div>
     </div>
 
-<!-- 【6. 常用日语】 -->
+    <!-- 【9. 常用日语与双向翻译】 -->
     <div id="japanese" class="section">
         <h2>🗣️ 常用日语随身宝与智能双向语音翻译官</h2>
-        <p>不仅包含了超全面的常用语，遇到突发状况还能在下方使用【智能联网双向翻译】，支持打字或麦克风语音输入！</p>
-        
-        <h3>1. 精选旅游生存常用语</h3>
-        <div class="lang-card"><strong>问候：</strong> こんにちは (Konnichiwa) - 你好 <button class="jp-btn" onclick="speak('こんにちは')">🔊 播放</button></div>
-        <div class="lang-card"><strong>谢谢：</strong> ありがとう ございます (Arigatou gozaimasu) - 非常感谢 <button class="jp-btn" onclick="speak('ありがとうございます')">🔊 播放</button></div>
-        <div class="lang-card"><strong>点餐/买单：</strong> これをお願いします (Kore o onegai shimasu) - 我要点这个 / 请买单 <button class="jp-btn" onclick="speak('これをお願いします')">🔊 播放</button></div>
-        <div class="lang-card"><strong>结账：</strong> お会計、お願いします (Okaikei, onegai shimasu) - 请结账 <button class="jp-btn" onclick="speak('お会計、お願いします')">🔊 播放</button></div>
-        <div class="lang-card"><strong>问路：</strong> 车站はどこですか？ (Eki wa doko desu ka?) - 请问车站在哪里？ <button class="jp-btn" onclick="speak('駅はどこですか')">🔊 播放</button></div>
-        <div class="lang-card"><strong>求助：</strong> 英语が話せますか？ (Eigo ga hanasemasu ka?) - 请问您会说英语吗？ <button class="jp-btn" onclick="speak('英語が話せますか')">🔊 播放</button></div>
-        <div class="lang-card"><strong>免税：</strong> 免税（めんぜい）はできますか？ (Menzei wa dekimasu ka?) - 可以免税吗？ <button class="jp-btn" onclick="speak('免税はできますか')">🔊 播放</button></div>
-        <div class="lang-card"><strong>刷卡：</strong> クレジットカードは使えますか？ (Kurejitto kādo wa tsukaemasu ka?) - 可以刷信用卡吗？ <button class="jp-btn" onclick="speak('クレジットカードは使えますか')">🔊 播放</button></div>
+        <p>支持一键点击发音与现场实时语音朗读，解决日本旅行中的点餐、购物、问路与紧急求助！</p>
 
-        <h3>2. 🌐 智能联网双向翻译官（中⇄日 + 🎤 语音输入）</h3>
+        <h3>1. 💬 高频场景实用日语随身手册 (含 🔊 试听发音)</h3>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">👋 日常礼貌与问候</h4>
+        <div class="lang-card"><strong>你好：</strong> こんにちは (Konnichiwa) <button class="jp-btn" onclick="speak('こんにちは', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>谢谢：</strong> ありがとうございます (Arigatou gozaimasu) <button class="jp-btn" onclick="speak('ありがとうございます', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>不好意思/打扰一下：</strong> すみません (Sumimasen) <button class="jp-btn" onclick="speak('すみません', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>对不起：</strong> ごめんなさい (Gomen nasai) <button class="jp-btn" onclick="speak('ごめんなさい', 'ja-JP')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🍱 点餐与用餐</h4>
+        <div class="lang-card"><strong>请给我菜单：</strong> メニューをお願いします (Menyuu o onegai shimasu) <button class="jp-btn" onclick="speak('メニューをお願いします', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请给我冰水：</strong> お冷をお願いします (Ohia o onegai shimasu) <button class="jp-btn" onclick="speak('お冷をお願いします', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>推荐什么菜？：</strong> おすすめは何ですか？ (Osume wa nan desu ka?) <button class="jp-btn" onclick="speak('おすすめは何ですか？', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>我要这个（指着菜单）：</strong> これをお願いします (Kore o onegai shimasu) <button class="jp-btn" onclick="speak('これをお願いします', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请结账：</strong> お会計、お願いします (Okaikei, onegai shimasu) <button class="jp-btn" onclick="speak('お会計、お願いします', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>多谢款待（吃饱后）：</strong> ごちそうさまでした (Gochisousama deshita) <button class="jp-btn" onclick="speak('ごちそうさまでした', 'ja-JP')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🛍️ 购物与退税</h4>
+        <div class="lang-card"><strong>请问这个多少钱？：</strong> これはおいくらですか？ (Kore wa oikura desu ka?) <button class="jp-btn" onclick="speak('これはおいくらですか？', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>可以退税吗？：</strong> 免税できますか？ (Menzei dekimasu ka?) <button class="jp-btn" onclick="speak('免税できますか？', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>可以用信用卡/微信/支付宝吗？：</strong> カード/微信/PayPayは使えますか？ <button class="jp-btn" onclick="speak('カード使えますか？', 'ja-JP')">🔊 播放</button></div>
+
+        <h4 style="margin-top: 15px; color: var(--secondary);">🗺️ 问路与交通</h4>
+        <div class="lang-card"><strong>请问洗手间在哪里？：</strong> トイレはどこですか？ (Toire wa doko desu ka?) <button class="jp-btn" onclick="speak('トイレはどこですか？', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请问车站怎么走？：</strong> 駅はどこですか？ (Eki wa doko desu ka?) <button class="jp-btn" onclick="speak('駅はどこですか？', 'ja-JP')">🔊 播放</button></div>
+        <div class="lang-card"><strong>请带我去这里（展示地址）：</strong> ここまでお願いします (Koko made onegai shimasu) <button class="jp-btn" onclick="speak('ここまでお願いします', 'ja-JP')">🔊 播放</button></div>
+
+        <h3>2. 🧰 现场应急智能朗读与翻译演示板</h3>
         <div class="translator-box">
-            <button class="switch-btn" id="modeBtn" onclick="toggleTranslationMode()" style="background: #1d3557; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-bottom: 10px;">当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)</button>
-            <p style="font-size: 0.9em; color:#666;" id="inputTip">请在下方输入中文字句或点击麦克风说话：</p>
-            
-            <div class="trans-input" style="margin: 10px 0;">
-                <textarea id="inputText" placeholder="例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。" style="padding: 8px; width: 100%; max-width: 500px; height: 60px; border: 1px solid #ccc; border-radius: 4px; resize: vertical; display: block; margin-bottom: 5px;"></textarea>
-                <!-- 语音输入听写按钮 -->
-                <button id="voiceBtn" onclick="startVoiceInput()" style="background: #457b9d; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 0.9em;">🎤 点击开始说话</button>
+            <h4>📱 现场快速展示与语音播放工具</h4>
+            <p>输入或选择下方常用句子，直接点击播放发音给日本店员听：</p>
+            <textarea id="jpText" placeholder="在此输入需要向店员出示或播放的中文/日语句子...">すみません、免税カウンターはどこですか？ (不好意思，请问退税柜台在哪里？)</textarea>
+            <div>
+                <button onclick="speakCurrentJp()">🔊 播放此句日文发音</button>
+                <button style="background: var(--secondary);" onclick="copyJpText()">📋 复制文本</button>
             </div>
-            <button onclick="translateText()" style="margin-top: 5px;">一键联网翻译</button>
-            
-            <div id="resultBox" class="trans-result" style="margin-top: 15px; padding: 10px; background: #fff; border: 1px dashed #457b9d; border-radius: 4px; display: none;">
-                <strong id="resultTitle">翻译结果（日语）：</strong>
-                <p id="translatedText" style="font-size: 1.2em; color: #1d3557; font-weight: bold; margin: 5px 0;"></p>
-                <button class="jp-btn" id="playTransBtn" style="margin-left:0;">🔊 点击朗读翻译结果</button>
+            <div style="margin-top: 12px; font-size: 0.9em; color: var(--text-muted);">
+                <strong>一键快捷载入：</strong>
+                <button class="jp-btn" style="margin: 3px;" onclick="setJpInput('袋はいりません。 (不需要塑料袋。)', '袋はいりません')">袋はいりません (不要袋子)</button>
+                <button class="jp-btn" style="margin: 3px;" onclick="setJpInput('領収書をください。 (请给我收据/发票。)', '領収書をください')">領収書をください (要发票)</button>
+                <button class="jp-btn" style="margin: 3px;" onclick="setJpInput('写真を撮っていただけますか？ (能帮我们拍张照吗？)', '写真を撮っていただけますか')">写真を撮っていただけますか (帮忙拍照)</button>
             </div>
         </div>
     </div>
 
-    <!-- 【7. 分享区板块】 -->
+    <!-- 【10. 分享区板块】 -->
     <div id="community" class="section">
         <h2>🌍 情报共享看板</h2>
-        <p style="color: #666; font-size: 0.95em;">欢迎来到属于大家的霓虹国情报站！你可以在下方自由发帖、分享你最新的踩坑实录、推荐的小众机位或美食。</p>
         <script src="https://giscus.app/client.js"
             data-repo="AshleyQAQ/ashleytripshare"
             data-repo-id="R_kgDOS1ZmWA"
@@ -561,35 +615,45 @@
 </div>
 
 <script>
-    // 全局变量控制翻译语种方向
     let sourceLang = "zh-CN";
     let targetLang = "ja";
     let recognition = null;
 
     function showSection(sectionId) {
         const sections = document.querySelectorAll('.section');
-        sections.forEach(sec => {
-            sec.classList.remove('active');
-        });
+        sections.forEach(sec => sec.classList.remove('active'));
+        
         const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
+        if (targetSection) targetSection.classList.add('active');
+
+        const navLinks = document.querySelectorAll('#mainNav .nav-item');
+        navLinks.forEach(link => {
+            if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(sectionId)) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function calculateBudget() {
         const flight = parseFloat(document.getElementById('flight').value) || 0;
-        const hotelPrice = parseFloat(document.getElementById('hotelPrice').value) || 0;
+        const hotelPriceYen = parseFloat(document.getElementById('hotelPrice').value) || 0;
         const hotelDays = parseInt(document.getElementById('hotelDays').value) || 0;
-        const food = parseFloat(document.getElementById('food').value) || 0;
+        const foodYen = parseFloat(document.getElementById('food').value) || 0;
         const playDays = parseInt(document.getElementById('playDays').value) || 0;
+        const rate = parseFloat(document.getElementById('exchangeRate').value) || 21.5;
 
-        const total = flight + (hotelPrice * hotelDays) + (food * playDays);
-        document.getElementById('totalResult').innerText = total.toFixed(0);
+        const totalYen = (hotelPriceYen * hotelDays) + (foodYen * playDays);
+        const totalRMB = flight + (totalYen * (rate / 100));
+        
+        document.getElementById('totalResult').innerText = totalRMB.toFixed(0);
     }
 
     function speak(text, lang = 'ja-JP') {
         if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = lang;
             window.speechSynthesis.speak(utterance);
@@ -598,122 +662,27 @@
         }
     }
 
-    // 动态切换中日/日中翻译模式
-    function toggleTranslationMode() {
-        const modeBtn = document.getElementById('modeBtn');
-        const inputTip = document.getElementById('inputTip');
-        const inputText = document.getElementById('inputText');
-        const resultBox = document.getElementById('resultBox');
+    function speakCurrentJp() {
+        const txt = document.getElementById('jpText').value;
+        if (!txt) return;
+        const cleanText = txt.split('(')[0].trim();
+        speak(cleanText, 'ja-JP');
+    }
 
-        resultBox.style.display = "none"; 
+    function setJpInput(text, speakText) {
+        document.getElementById('jpText').value = text;
+        speak(speakText, 'ja-JP');
+    }
 
-        if (sourceLang === "zh-CN") {
-            sourceLang = "ja";
-            targetLang = "zh-CN";
-            modeBtn.innerText = "当前模式：🇯🇵 日语 ➜ 🇨🇳 中文 (点击切换)";
-            inputTip.innerText = "请在下方输入日语字句或点击麦克风说话：";
-            inputText.placeholder = "例如：トイレはどこですか？ / お会計をお願いします。";
-        } else {
-            sourceLang = "zh-CN";
-            targetLang = "ja";
-            modeBtn.innerText = "当前模式：🇨🇳 中文 ➜ 🇯🇵 日语 (点击切换)";
-            inputTip.innerText = "请在下方输入中文字句或点击麦克风说话：";
-            inputText.placeholder = "例如：请问洗手间在哪里？/ 麻烦帮我拿一床被子。";
+    function copyJpText() {
+        const txt = document.getElementById('jpText').value;
+        if (txt) {
+            navigator.clipboard.writeText(txt);
+            alert("已复制到剪贴板！");
         }
     }
 
-    // 智能外部语音输入听写函数
-    function startVoiceInput() {
-        const voiceBtn = document.getElementById('voiceBtn');
-        const inputText = document.getElementById('inputText');
-
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            alert("抱歉，您的浏览器不支持语音输入功能，建议使用 Chrome 或 Safari 浏览器，并确保在 HTTPS 环境下打开。");
-            return;
-        }
-
-        if (!recognition) {
-            recognition = new SpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-
-            recognition.onresult = function(event) {
-                const resultText = event.results[0][0].transcript;
-                inputText.value = resultText;
-                voiceBtn.innerText = "🎤 点击开始说话";
-                voiceBtn.style.background = "#457b9d";
-                // 语音输入完成后，自动唤醒联网翻译
-                translateText();
-            };
-
-            recognition.onerror = function(event) {
-                console.error("语音识别错误: ", event.error);
-                if (event.error === 'not-allowed') {
-                    alert("请在浏览器地址栏左侧允许网页访问您的麦克风权限！");
-                }
-                voiceBtn.innerText = "🎤 点击开始说话";
-                voiceBtn.style.background = "#457b9d";
-            };
-
-            recognition.onend = function() {
-                voiceBtn.innerText = "🎤 点击开始说话";
-                voiceBtn.style.background = "#457b9d";
-            };
-        }
-
-        // 识别语种根据翻译方向智能动态自适应
-        recognition.lang = (sourceLang === "zh-CN") ? 'zh-CN' : 'ja-JP';
-
-        try {
-            recognition.start();
-            voiceBtn.innerText = "🛑 正在聆听中...请说话";
-            voiceBtn.style.background = "#e63946"; 
-        } catch (e) {
-            recognition.stop();
-        }
-    }
-
-    // 核心双向联网翻译引擎
-    async function translateText() {
-        const text = document.getElementById('inputText').value.trim();
-        const resultBox = document.getElementById('resultBox');
-        const translatedTextDiv = document.getElementById('translatedText');
-        const resultTitle = document.getElementById('resultTitle');
-        const playBtn = document.getElementById('playTransBtn');
-        
-        if (!text) {
-            alert(sourceLang === "zh-CN" ? "请先输入或通过语音输入中文！" : "请先输入或通过语音输入日语！");
-            return;
-        }
-
-        translatedTextDiv.innerText = "联网翻译中，请稍候...";
-        resultBox.style.display = "block";
-
-        try {
-            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data && data[0] && data[0][0]) {
-                const result = data[0][0][0];
-                translatedTextDiv.innerText = result;
-                
-                if (targetLang === "ja") {
-                    resultTitle.innerText = "翻译结果（日语）：";
-                    playBtn.onclick = function() { speak(result, 'ja-JP'); };
-                } else {
-                    resultTitle.innerText = "翻译结果（中文）：";
-                    playBtn.onclick = function() { speak(result, 'zh-CN'); };
-                }
-            } else {
-                translatedTextDiv.innerText = "翻译失败，请检查网络或稍后重试。";
-            }
-        } catch (error) {
-            console.error(error);
-            translatedTextDiv.innerText = "网络请求发生错误，请重试。";
-        }
-    }
+    calculateBudget();
 </script>
 
 </body>
